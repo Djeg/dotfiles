@@ -2,7 +2,9 @@ My dotfiles ^.^
 ===============
 
 > One Shell to rule them all, One Shell to find them,
+>
 > One Shell to bring them all and in the darkness bind them.
+>
 > In the Land of Command Lines where the Shadows lie.
 
 [![pimp my linux!](.images/pimp_my_linux.png)](https://raw.githubusercontent.com/Djeg/dotfiles/master/.images/pimp_my_linux.png)
