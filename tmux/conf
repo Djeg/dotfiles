@@ -20,19 +20,25 @@ bind l select-pane -R
 bind L swap-window -t +1
 bind H swap-window -t -1
 
+# resize pane
+bind L resize-pane -R 10
+bind K resize-pane -U 10
+bind J resize-pane -D 10
+bind H resize-pane -L 10
+
 # reload tmux conf
 bind-key r source-file ~/.tmux.conf \; display "Config reloaded"
 
 set -g status-fg colour250
-set -g status-bg colour016
+set -g status-bg colour233
 
 # left side of status bar
 set -g status-left-length 30
-set -g status-left '#[fg=colour016,bg=colour24,nobold]⮀#[fg=colour250,bg=colour24,bold] 😎  #W #[fg=colour24,bg=colour016,nobold]⮀'
+set -g status-left '#[fg=colour233,bg=colour24,nobold]⮀#[fg=colour250,bg=colour24,bold] 😎  #W #[fg=colour24,bg=colour233,nobold]⮀'
 
 # right side of status bar
 set -g status-right-length 30
-set -g status-right '#[fg=colour24,bg=colour016,nobold]⮂#[fg=colour250,bg=colour24,bold] %Y-%m-%d - %H:%M #[fg=colour016,bg=colour24,nobold]⮂'
+set -g status-right '#[fg=colour24,bg=colour233,nobold]⮂#[fg=colour250,bg=colour24,bold] %Y-%m-%d - %H:%M #[fg=colour233,bg=colour24,nobold]⮂'
 
 # status bar options
 set-option -g status-justify centre         # alignment of windows
@@ -45,3 +51,7 @@ set -g message-bg colour24
 set -g message-attr bold
 set -g pane-border-fg colour233
 set -g pane-active-border-fg colour24
+
+# tmuxinator fix
+set -g base-index 1
+set -g pane-base-index 1

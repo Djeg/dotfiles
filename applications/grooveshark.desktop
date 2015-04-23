@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Grooveshark
-Comment=Music&More
-Exec=google-chrome --app=http://grooveshark.com/
-Icon=/home/djeg/.icons/grooveshark.png
-Terminal=false

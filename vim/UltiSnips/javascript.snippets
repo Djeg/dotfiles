@@ -8,34 +8,36 @@ endsnippet
 
 snippet fun "Standard js function" !b
 function ${1:name} (${2:args}) {
-    $0
+  $0
 };
+endsnippet
+
+snippet cl "console.log" !b
+console.log($1);
 endsnippet
 
 snippet func "Standard javascript function" !b
 var ${1:name} = function (${2:args}) {
-    $0
+  $0
+};
+endsnippet
+
+snippet fum "A prototype method" !b
+${1:class}.prototype.${2:method} = function ($3) {
+  $0
 };
 endsnippet
 
 snippet pfunc "Standard member method" !b
 this.${1:name} = function (${2:args}) {
-    $0
+  $0
 };
 endsnippet
 
 snippet callb "Standard javascript callback" !b
 function (${1:args}) {
-    $0
+  $0
 }
-endsnippet
-
-snippet mod "Standard AMD module" !b
-(function (${2:args}) {
-
-$0
-
-})(${1:dependencies});
 endsnippet
 
 snippet str "use strict snippet" !b
@@ -77,11 +79,11 @@ ${1:name}: function (${2:args}) {
 },
 endsnippet
 
-snippet wp "Standard wrap" !b
-(function ($1) {
-    'use strict';
+snippet mod "Standard wrap" !b
+;(function ($1) {
+  'use strict';
 
-    $0
+  $0
 })($2);
 endsnippet
 
@@ -111,6 +113,27 @@ endsnippet
 
 snippet desc "Jasmine descrive" !b
 describe('${1:something}', function () {
-    $0
+  $0
 });
+endsnippet
+
+snippet it "Jasmine spec step" !b
+it('${1:something}', function () {
+  $0
+});
+endsnippet
+
+snippet acl "angular controllerc" :b
+;(function (app) {
+  'use strict';
+
+  var $3 = function (${5:arguments}) {
+    $0
+  };
+
+  app.controller('${3:MyController}', [
+    ${4:dependencies},
+	$3
+  ]);
+})($1);
 endsnippet

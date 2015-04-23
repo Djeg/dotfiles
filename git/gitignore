@@ -4,3 +4,4 @@ Guardfile
 sample/
 test/
 test.*
+test*

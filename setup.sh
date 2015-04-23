@@ -1,14 +1,25 @@
 #!/bin/bash
 
-DIR=`dirname $0`
+echo "
+|---------------------------------------------|
+|    ___  ___  _____  ________  __    __  __  |
+|   /   \/___\/__   \/ __\_   \/ /   /__\/ _\ |
+|  / /\ //  //  / /\/ _\  / /\/ /   /_\  \ \  |
+| / /_// \_//  / / / / /\/ /_/ /___//__  _\ \ |
+|/___,'\___/   \/  \/  \____/\____/\__/  \__/ |
+|---------------------------------------------|
 
-bash $DIR/.setup/vim.sh
-bash $DIR/.setup/zsh.sh
-bash $DIR/.setup/font.sh
-bash $DIR/.setup/tmux.sh
-bash $DIR/.setup/git.sh
-bash $DIR/.setup/gtk-3.sh
-bash $DIR/.setup/i3.sh
+Instalation in progress ...
+"
 
-echo ".dotfiles are installed!"
+bash .setup/dependencies.sh
+bash .setup/vim.sh
+bash .setup/zsh.sh
+bash .setup/font.sh
+bash .setup/tmux.sh
+bash .setup/git.sh
+
+echo "If ne error happens, it means that this dotfiles are installed."
+echo "You can reset your terminal and use zsh in order to enjoy those dotfiles."
+echo ""
 echo "enjoy 😄 !"

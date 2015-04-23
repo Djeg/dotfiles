@@ -9,6 +9,7 @@ set directory=~/.vim/tmp        " Directory to put swap file
 
 " higlight the cursor line
 set cursorline
+set cursorcolumn
 
 "
 " Tabs & Indentation
@@ -24,6 +25,7 @@ set list
 set listchars=eol:ᛎ,trail:‧,tab:▹∙,nbsp:ⅹ
 if has('gui_running')
     set listchars=eol:ᛎ,trail:‧,tab:▹∙,nbsp:ⅹ
+    set lines=50 columns=140
 endif
 " fixme: should use softtabstop=4 instead of expandtab and setting tabstop
 
@@ -36,12 +38,12 @@ nmap <leader>4 :set tabstop=4<cr>:set shiftwidth=4<cr>
 "
 set ls=2                            " Always show the status line
 set ruler                           " Show cursor position
-set number                          " Show line numbers
 set notitle                         " Don't show title in console title bar
 set novisualbell                    " Don't use the visual bell
 set nowrap                          " Wrap lineource $MYVIMRC
 set showmatch                       " Show matching (){}[]
-set clipboard+=unnamed              " Allow to cp/p from clipboard
+set clipboard+=unnamedplus          " "Allow to cp/p from clipboard
+
 
 map <leader>l 20zl
 map <leader>h 20zh
@@ -164,6 +166,7 @@ set tags+=vendor.tags
 " Let vundle manage the vundle
 Bundle 'gmarik/vundle'
 
+Bundle 'joonty/vdebug.git'
 Bundle 'The-NERD-tree'
 Bundle 'UltiSnips'
 Bundle 'kien/ctrlp.vim.git'
@@ -202,6 +205,11 @@ let g:pdv_template_dir = $HOME ."/.vim/doc_templates"
 nnoremap <Leader>d :call pdv#DocumentWithSnip()<CR>
 
 "
+" Powerline
+"
+let g:Powerline_stl_path_style = 'filename'
+
+"
 " ControlP mapping
 "
 let g:ctrlp_map = '<c-p>'
@@ -227,6 +235,7 @@ let g:Powerline_symbols = 'fancy'
 set t_Co=256
 colorscheme molokai
 hi Normal          ctermfg=252 ctermbg=none
+hi Normal          guifg=#F8F8F2 guibg=#303030
 let &colorcolumn="80,120"
 
 " force to never use arrow for navigation !
@@ -239,7 +248,7 @@ nmap <Right> <nop>
 nnoremap <leader>x :NERDTreeToggle<CR>
 vnoremap <Leader>: :Tabularize /:<CR>
 vnoremap <Leader>/ :Tabularize /:\zs<CR>
-vnoremap <Leader>= :Tabularize /=<CR>
+vmap <Leader>= :Tabularize /=<CR>
 vnoremap <Leader>> :Tabularize /=><CR>
 vnoremap <Leader>$ :Tabularize /\$/l1r0<CR>
 vnoremap <Leader>\| :Tabularize /\|<CR>
@@ -248,6 +257,8 @@ nnoremap <Leader><C-t> :!ctags -R --PHP-kinds=+cf -h ".js"<CR>
 nnoremap <Leader>v :source ~/.vimrc<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
+nnoremap <silent> <Leader>en :set number<CR>
+nnoremap <silent> <Leader>dn :set nonumber<CR>
 
 " easy navigation between words
 nmap <C-l> w
@@ -276,6 +287,9 @@ nnoremap <Leader>hh :bp<CR>
 nnoremap <Leader>q :BD<CR>
 nmap <Leader>f <Leader>lr
 
+"C++ headers navigation
+nnoremap <leader>jh :e %:r.h:s?src?include?<CR>
+
 map <M-a>v <C-c>
 
 " Easy tags jump
@@ -291,8 +305,8 @@ inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
 noremap <Leader>e :call PhpExpandClass()<CR>
 
 " ZEN coding shortcuts ;)
-nmap <silent> <Leader>z :call emmet#expandAbbr(3,"")<CR>
-imap <silent> <Leader>z <Esc>h :call emmet#expandAbbr(3,"")<CR>
+nmap <silent> <Leader>z :call emmet#expandAbbr(3,"")<CR>i
+imap <silent> <Leader>z <Esc>h :call emmet#expandAbbr(3,"")<CR>i
 
 "
 " Jsdoc mapping

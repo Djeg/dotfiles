@@ -2,21 +2,16 @@
 
 echo "Installing fonts ..."
 
-echo "UbuntuMono for powerline ..."
-
-CDIR=`dirname $0`
-HOME="$CDIR/../../"
-
-if [ ! -d "$HOME/.local" ]; then
-    mkdir $HOME/.local
+if [ ! -d "~/.local" ]; then
+    mkdir ~/.local
 fi
-if [ ! -d "$HOME/.local/share" ]; then
-    mkdir $HOME/.local/share
+if [ ! -d "~/.local/share" ]; then
+    mkdir ~/.local/share
 fi
-if [ ! -d "$HOME/.local/share/fonts" ]; then
-    mkdir $HOME/.local/share/fonts
+if [ ! -d "~/.local/share/fonts" ]; then
+    mkdir ~/.local/share/fonts
 fi
 
-cp $CDIR/../font/UbuntuMono-R-Powerline $HOME/.local/share/fonts
+cp font/* ~/.local/share/fonts
 
-echo "😄  done"
+echo "DONE"

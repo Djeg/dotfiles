@@ -5,66 +5,53 @@ echo "Installing dependencies, please wait ..."
 user=`whoami`
 dir=`dirname $0`
 
-echo "gnome-terminal ..."
-apt-get install gnome-terminal
-echo "😄  done"
+echo "PPA ..."
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo add-apt-repository ppa:gophers/go
+sudo add-apt-repository ppa:evarlast/golang1.4
+echo "DONE"
 
-echo "vim ..."
-apt-get install vim
-echo "😄  done"
+echo "Update package list ..."
+sudo apt-get update
+echo "DONE"
 
-echo "curl ..."
-apt-get install curl
-echo "😄  done"
+echo "System dependencies ..."
+sudo apt-get install vim vim-gtk php5 php5-curl php5-gd php5-imagick php5-intl \
+    php5-json php5-mcrypt php5-memcache php5-memcached php5-mongo php5-mysql \
+    php5-pgsql php5-redis php5-sqlite php5-xdebug mysql-client mysql-server \
+    mongodb sqlite ruby ruby-dev golang nodejs tmux tree git xclip openjdk-7-jre \
+    curl firefox libxss1 libappindicator1 libindicator7 zsh
+echo "DONE"
 
-echo "ruby ..."
-apt-get install ruby
-echo "😄  done"
+echo "Installing golang depencies ..."
+export GOPATH="$HOME/.go"
+export GOBIN="$HOME/.go/bin"
+export GOROOT="/usr/lib/go"
 
-echo "php5 ..."
-apt-get install php5 php5-intl php5-json php5-mcrypt php5-xdebug php5-mysql
-echo "😄  done"
+mkdir ~/.go
+mkdir ~/.go/bin
+mkdir ~/.go/lib
 
-echo "nodejs ..."
-add-apt-repository ppa:chris-lea/node.js
-apt-get update
-apt-get install nodejs
-echo "😄  done"
+go get github.com/peco/peco/cmd/peco
+go get github.com/github/hub
+echo "DONE"
 
-echo "mysql ..."
-apt-get install mysql-server
-echo "😄  done"
+echo "Nodejs dependencies ..."
+sudo npm install -g bower gulp grunt-cli
+echo "DONE"
 
-echo "apache2 ..."
-apt-get install apache2 libapache2-mod-php5
-sed -i.bak s/APACHE_RUN_USER=www-data/APACHE_RUN_USER=$user/ /etc/apache2/envvars && rm /etc/apache2/envvars.bak
-sed -i.bak s/APACHE_RUN_GROUP=www-data/APACHE_RUN_GROUP=$user/ /etc/apache2/envvars && rm /etc/apache2/envvars.bak
-service apache2 restart
-echo "😄  done"
+echo "Ruby dependencies ..."
+sudo gem install guard-ctags-composer tmuxinator
+echo "DONE"
 
-echo "phpmyadmin ..."
-apt-get install phpmyadmin
-echo "😄  done"
+echo "Composer ... "
+cd ~ && curl -sS https://getcomposer.org/installer | php && mv ~/composer.phar ~/.composer.phar
+echo "DONE"
 
-echo "composer ..."
-curl -sS https://getcomposer.org/installer | php -- --install-dir=/opt --filename=composer
-cp $dir/scripts/composer /usr/bin/composer && chmod +x /usr/bin/composer
-echo "😄  done"
+echo "Selenium server ..."
+cd ~ && wget http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar && mv ~/selenium-server-standalone-2.45.0.jar ~/.selenium-server-standalone
+echo "DONE"
 
-echo "phantomjs ..."
-npm install -g phantomjs
-echo "😄  done"
-
-echo "grunt ..."
-npm install -g grunt-cli
-echo "😄  done"
-
-echo "add sf2 hosts ..."
-cp $dir/scripts/addsfhost /usr/bin/addsfhost
-chmod +x /usr/bin/addsfhost
-echo "😄  done"
-
-echo "guard ..."
-apt-get install exuberant-ctags
-gem install guard-ctags-composer
-echo "😄  done"
+echo "Installing chrome ..."
+cd ~ && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo dpkg -i google-chrome-stable_current_amd64.deb
+echo "DONE"

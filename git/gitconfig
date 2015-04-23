@@ -1,8 +1,10 @@
 [user]
-    name = David Jegat
-    email = david.jegat@gmail.com
+	name = David Jegat
+	email = david.jegat@knplabs.com
 [color]
     ui = true
+[color "status"]
+    changed=yellow
 [core]
     excludesfile = ~/.gitignore
 [alias]
@@ -15,6 +17,7 @@
     all = add -A
     amend = commit --amend
     aci = !git add -A && git commit -m
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s%Cgreen(%cr) %C(bold blue)<%an>%Creset'--abbrev-commit --date=relative
 [merge]
     tool = vimdiff
 [url "git@github.com:"]

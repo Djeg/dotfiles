@@ -2,13 +2,6 @@
 
 echo "Installing tmus configuration ..."
 
-CDIR=`dirname $0`
-TMUXCONF=$CDIR/../tmux/conf
-TMUXCF=$CDIR/../../.tmux.conf
+cd ~ && ln -s .dotfiles/tmux/conf .tmux.conf
 
-if [ -f $TMUXCF ]; then
-    rm $TMUXCF
-fi
-
-ln -s $TMUXCONF $TMUXCF
-echo "😄  done"
+echo "DONE"
