@@ -1,0 +1,13 @@
+name: sf2
+root: .
+
+windows:
+  - editor: vim
+  - shell:
+      layout: 8399,159x41,0,0{109x41,0,0,1,49x41,110,0[49x32,110,0,2,49x2,110,33,3,49x2,110,36,4,49x2,110,39,5]}
+      panes:
+        - clear
+        - clear
+        - selenium
+        - php -S localhost:8000 web/
+        - guard

@@ -18,6 +18,7 @@ bash .setup/zsh.sh
 bash .setup/font.sh
 bash .setup/tmux.sh
 bash .setup/git.sh
+bash .setup/tmuxinator.sh
 
 echo "If ne error happens, it means that this dotfiles are installed."
 echo "You can reset your terminal and use zsh in order to enjoy those dotfiles."
