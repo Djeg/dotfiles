@@ -43,6 +43,7 @@ set novisualbell                    " Don't use the visual bell
 set nowrap                          " Wrap lineource $MYVIMRC
 set showmatch                       " Show matching (){}[]
 set clipboard+=unnamedplus          " "Allow to cp/p from clipboard
+set laststatus=2
 
 
 map <leader>l 20zl
@@ -179,7 +180,7 @@ Bundle 'kana/vim-smartinput.git'
 Bundle 'danro/rename.vim.git'
 Bundle 'lunaru/vim-less'
 Bundle 'hail2u/vim-css3-syntax.git'
-Bundle 'Lokaltog/vim-powerline.git'
+Bundle 'bling/vim-airline'
 Bundle 'godlygeek/tabular.git'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'sjbach/lusty.git'
@@ -199,15 +200,35 @@ Bundle 'mustache/vim-mustache-handlebars'
 filetype plugin indent on
 
 "
+" Airline
+"
+let g:airline_powerline_fonts = 1
+let g:airline_theme='powerlineish'
+let g:airline#extensions#hunks#enabled=0
+
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '⮀'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '⮂'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+"
 " PDV
 "
 let g:pdv_template_dir = $HOME ."/.vim/doc_templates"
 nnoremap <Leader>d :call pdv#DocumentWithSnip()<CR>
-
-"
-" Powerline
-"
-let g:Powerline_stl_path_style = 'filename'
 
 "
 " ControlP mapping
@@ -228,7 +249,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-let g:Powerline_symbols = 'fancy'
 "
 " Coloration
 "

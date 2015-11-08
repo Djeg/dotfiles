@@ -1,0 +1,10 @@
+name: editor
+root: .
+
+windows:
+  - editor: vim
+  - shell:
+      layout: '0a7e,166x41,0,0{113x41,0,0,7,52x41,114,0,8}'
+      panes:
+        - clear
+        - clear

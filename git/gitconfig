@@ -2,7 +2,8 @@
 	name = David Jegat
 	email = david.jegat@knplabs.com
 [color]
-    ui = true
+	ui = true
+	status = always
 [color "status"]
     changed=yellow
 [core]
