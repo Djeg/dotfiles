@@ -1,0 +1,38 @@
+[global_config]
+  suppress_multiple_term_dialog = True
+[keybindings]
+  split_horiz = <Primary><Shift><Alt>h
+  split_vert = <Primary><Shift><Alt>v
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 0.88
+    background_type = transparent
+    background_image = None
+    foreground_color = "#ededed"
+    use_custom_command = True
+    icon_bell = False
+    show_titlebar = False
+    custom_command = zsh
+    font = Ubuntu Mono for Powerline 16
+    background_color = "#121212"
+  [[invisible]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_darkness = 1.15
+    background_type = transparent
+    background_image = None
+    icon_bell = False
+    show_titlebar = False
+    font = Ubuntu Mono for Powerline 10
+    cursor_blink = False
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
