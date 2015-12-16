@@ -8,7 +8,7 @@ endsnippet
 
 snippet fun "Standard js function" !b
 function ${1:name} (${2:args}) {
-  $0
+    $0
 };
 endsnippet
 
@@ -18,25 +18,25 @@ endsnippet
 
 snippet func "Standard javascript function" !b
 var ${1:name} = function (${2:args}) {
-  $0
+    $0
 };
 endsnippet
 
 snippet fum "A prototype method" !b
 ${1:class}.prototype.${2:method} = function ($3) {
-  $0
+    $0
 };
 endsnippet
 
 snippet pfunc "Standard member method" !b
 this.${1:name} = function (${2:args}) {
-  $0
+    $0
 };
 endsnippet
 
 snippet callb "Standard javascript callback" !b
 function (${1:args}) {
-  $0
+    $0
 }
 endsnippet
 
@@ -50,12 +50,12 @@ snippet njcl "JSClass standard class for nodejs" !b
 var Class = require('jsclass/src/core').Class;
 
 var ${1:ClassName} = new Class(${2:Parent, }{
-    /**
-     * @constructs $1
-     */
-    initialize: function (${3:args}) {
-        $0
-    },
+        /**
+         * @constructs $1
+         */
+        initialize: function (${3:args}) {
+                $0
+        },
 });
 
 module.exports = $1;
@@ -65,9 +65,9 @@ snippet jcl "JSClass standard class for browser" !b
 JS.require(${1:'JS.Class'}, function (${2:Class}), {
 
 var ${3:ClassName} = new Class(${4:Parent, }{
-    initialize: function (${5:args}) {
-        $0
-    },
+        initialize: function (${5:args}) {
+                $0
+        },
 });
 
 });
@@ -75,65 +75,65 @@ endsnippet
 
 snippet jm "JSClass standard method" !b
 ${1:name}: function (${2:args}) {
-    $0
+        $0
 },
 endsnippet
 
 snippet mod "Standard wrap" !b
 ;(function ($1) {
-  'use strict';
+    'use strict';
 
-  $0
+    $0
 })($2);
 endsnippet
 
 snippet cb "Standard callback" !b
 function $1 ($2) {
-    $0
+        $0
 }
 endsnippet
 
 snippet if "standard condition" !b
 if ($1) {
-    $0
+        $0
 }
 endsnippet
 
 snippet for "for standard loop" !b
 for (var ${1:i} = 0; i < ${2:limit}; ${3:i++}) {
-    $0
+        $0
 }
 endsnippet
 
 snippet fori "for in lopp" !b
 for (var ${1:key} in ${2:object}) {
-    $0
+        $0
 }
 endsnippet
 
 snippet desc "Jasmine descrive" !b
 describe('${1:something}', function () {
-  $0
+    $0
 });
 endsnippet
 
 snippet it "Jasmine spec step" !b
 it('${1:something}', function () {
-  $0
+    $0
 });
 endsnippet
 
 snippet acl "angular controllerc" :b
 ;(function (app) {
-  'use strict';
+    'use strict';
 
-  var $3 = function (${5:arguments}) {
-    $0
-  };
+    var $3 = function (${5:arguments}) {
+        $0
+    };
 
-  app.controller('${3:MyController}', [
-    ${4:dependencies},
+    app.controller('${3:MyController}', [
+        ${4:dependencies},
 	$3
-  ]);
+    ]);
 })($1);
 endsnippet

@@ -196,6 +196,7 @@ Bundle 'aaronj1335/underscore-templates.vim.git'
 Bundle 'scrooloose/nerdcommenter.git'
 Bundle 'mattn/emmet-vim'
 Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'ekalinin/Dockerfile.vim'
 
 filetype plugin indent on
 
@@ -343,3 +344,9 @@ let g:symfony_app_console_path= "app/console"
 noremap <leader>sr :call CompleteSymfonyRouter()<CR>
 noremap <leader>sc :call CompleteSymfonyContainer()<CR>
 noremap <silent> <C-t> :CtrlPTag<cr>
+
+" speep up Ctrl-P
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --path-to-agignore=~/.agignore -g ""'
+endif

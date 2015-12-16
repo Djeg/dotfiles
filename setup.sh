@@ -19,8 +19,9 @@ bash .setup/font.sh
 bash .setup/tmux.sh
 bash .setup/git.sh
 bash .setup/tmuxinator.sh
+bash .setup/elementary-freya-tweaks.sh
 
-echo "If ne error happens, it means that this dotfiles are installed."
+echo "If no error happens, it means that this dotfiles are installed."
 echo "You can reset your terminal and use zsh in order to enjoy those dotfiles."
 echo ""
-echo "enjoy 😄 !"
+echo "See ya dear master 😄 !"

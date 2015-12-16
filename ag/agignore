@@ -1,0 +1,14 @@
+vendor/
+bower_components/
+log/
+app/bower_components/
+app/logs/
+app/cache/
+cache/
+build/
+data/
+web/bundles/
+src/*/*/vendor
+src/*/vendor
+old/
+app/lib/

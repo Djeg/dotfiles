@@ -92,7 +92,7 @@ bindkey ^R history-incremental-search-backward
 export GOPATH="$HOME/.go"
 export GOBIN="$HOME/.go/bin"
 export GOROOT="/usr/lib/go"
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/.composer/vendor/bin:$GOPATH/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin:$HOME/.composer/vendor/bin:$GOPATH/bin:$HOME/.bin" # Add RVM to PATH for scripting
 export EDITOR='vim'
 export TERM=screen-256color-bce
 
