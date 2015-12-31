@@ -224,15 +224,15 @@ snippet funid "Add a simple mehod signature with doc" !b
 public function ${1:name}(${3:\$args});$0
 endsnippet
 
-snippet attr "Display an attribute" !b
-${1:private} \$${2:value};
+snippet at "Display an attribute" !b
+${1:private} \$${2:value};$0
 endsnippet
 
-snippet attrd "Display an attribute with doc" !b
+snippet atd "Display an attribute with doc" !b
 /**
- * @var ${3:string}
+ * @var ${1:type} \$$3
  */
-${1:private} \$${2:value};$0
+${2:private} \$${3:value};$0
 endsnippet
 
 snippet use "Use statement" !b
@@ -421,14 +421,44 @@ snippet dd "Die and dump a variable" !b
 die(var_dump(\$${1:var}));
 endsnippet
 
-snippet th "this" !b
+snippet th "this" !i
 \$this->$0
 endsnippet
 
-snippet th= "this equal" !b
+snippet the "this equal" !i
 \$this->$1 = \$$1;$0
 endsnippet
 
-snippet th=n "this equal null" !b
-\$this->$1 = null;$0
+snippet dp "dump" !b
+dump($1);
+endsnippet
+
+snippet /* "doc bloc" !b
+/**
+ * $0
+ */
+endsnippet
+
+snippet @p "param doc bloc" !i
+@param ${2:type} \$${1:name}
+endsnippet
+
+snippet @pa "param for object doc bloc" !i
+@param \\${2:Namespace} \$${1:name}
+endsnippet
+
+snippet @v "var doc bloc" !i
+@var ${2:type} \$${1:name}
+endsnippet
+
+snippet @va "var for object doc bloc" !i
+@var \\${2:Namespace} \$${1:name}
+endsnippet
+
+snippet @r "return doc bloc" !i
+@return ${1:type}
+endsnippet
+
+snippet @re "return for object doc bloc" !i
+@return \\${1:Namespace}
 endsnippet

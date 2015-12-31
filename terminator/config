@@ -32,7 +32,20 @@
     [[[child1]]]
       type = Terminal
       parent = window0
+      profile = default
     [[[window0]]]
       type = Window
       parent = ""
+  [[invisible]]
+    [[[child0]]]
+      position = 0:30
+      type = Window
+      order = 0
+      parent = ""
+      size = 1600, 870
+    [[[terminal1]]]
+      profile = invisible
+      type = Terminal
+      order = 0
+      parent = child0
 [plugins]

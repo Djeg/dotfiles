@@ -33,15 +33,15 @@ set -g status-fg colour250
 set -g status-bg colour233
 
 # left side of status bar
-set -g status-left-length 30
-set -g status-left '#[fg=colour233,bg=colour24,nobold]⮀#[fg=colour250,bg=colour24,bold] 😎  #W #[fg=colour24,bg=colour233,nobold]⮀'
+ set -g status-left-length 0
+ set -g status-left '#[fg=colour233,bg=colour24,nobold]⮀#[fg=colour250,bg=colour24,bold] 😎  #W #[fg=colour24,bg=colour233,nobold]⮀'
 
 # right side of status bar
-set -g status-right-length 30
-set -g status-right '#[fg=colour24,bg=colour233,nobold]⮂#[fg=colour250,bg=colour24,bold] %Y-%m-%d - %H:%M #[fg=colour233,bg=colour24,nobold]⮂'
+ set -g status-right-length 30
+ set -g status-right '#[fg=colour24,bg=colour233,nobold]⮂#[fg=colour250,bg=colour24,bold] #(battery Discharging) #[fg=colour232,bg=colour24,nobold]⮂'
 
 # status bar options
-set-option -g status-justify centre         # alignment of windows
+set-option -g status-justify left         # alignment of windows
 set -g window-status-format ' #W '          # Inactive windows in status bar
 set -g window-status-current-format '#[fg=colour250,bg=colour24,bold] #W '
 

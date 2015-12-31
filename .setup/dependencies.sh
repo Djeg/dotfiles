@@ -21,7 +21,7 @@ sudo apt-get install vim vim-gtk php5 php5-curl php5-gd php5-imagick php5-intl \
     php5-pgsql php5-redis php5-sqlite php5-xdebug mysql-client mysql-server \
     mongodb sqlite ruby ruby-dev golang nodejs tmux tree git xclip openjdk-7-jre \
     curl firefox libxss1 libappindicator1 libindicator7 zsh terminator silversearcher-ag \
-    htop
+    htop lynx
 echo "DONE"
 
 echo "Installing golang depencies ..."

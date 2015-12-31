@@ -12,3 +12,5 @@ src/*/*/vendor
 src/*/vendor
 old/
 app/lib/
+node_modules/
+packages/
