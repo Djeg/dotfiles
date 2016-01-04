@@ -1,0 +1,86 @@
+snippet mod "Create a module" !b
+module ${1:Name} {
+    $0
+}
+endsnippet
+
+snippet cl "Create a class" !b
+class ${1:Name}
+{
+    $0
+}
+endsnippet
+
+snippet ecl "Create a class and export it" !b
+export class ${1:Name}
+{
+    $0
+}
+endsnippet
+
+snippet mcl "Create a class in a module" !b
+module ${1:ModuleName} {
+    export class ${2: ClassName}
+    {
+        $0
+    }
+}
+endsnippet
+
+snippet cons "Constructor"
+constructor(${1:arguments})
+{
+    $0
+}
+endsnippet
+
+snippet fum "Generate a method"
+${1:methodName}(${2:arguments}): ${3:void}
+{
+    $0
+}
+endsnippet
+
+snippet attr "attribute"
+${1:private} ${2:attribute}: ${3:type};$0
+endsnippet
+
+snippet it "Generate an interface"
+interface ${1:Name}
+{
+    $0
+}
+endsnippet
+
+snippet mit "Module interface and export it"
+module ${1:ModuleName} {
+    export interface ${2:InterfaceName}
+    {
+        $0
+    }
+}
+endsnippet
+
+snippet attri "Interface attribute"
+${1:name}: ${2:type};$0
+endsnippet
+
+snippet fumi "Interface method"
+${1:name}(${2:arguments}): ${3:void};$0
+endsnippet
+
+snippet fui "function interface"
+(${1:arguments}): ${2:void};$0
+endsnippet
+
+snippet ari "array interface"
+[index: ${1:string}]: ${2:string};$0
+endsnippet
+
+snippet th "this snippet"
+this.$1;$0
+endsnippet
+
+snippet the "this equal"
+this.$1 = $2;$0
+endsnippet

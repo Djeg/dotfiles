@@ -14,3 +14,4 @@ old/
 app/lib/
 node_modules/
 packages/
+typings/

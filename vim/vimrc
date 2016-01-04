@@ -44,6 +44,7 @@ set nowrap                          " Wrap lineource $MYVIMRC
 set showmatch                       " Show matching (){}[]
 set clipboard+=unnamedplus          " "Allow to cp/p from clipboard
 set laststatus=2
+set number
 
 
 map <leader>l 20zl
@@ -197,6 +198,7 @@ Bundle 'scrooloose/nerdcommenter.git'
 Bundle 'mattn/emmet-vim'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'ekalinin/Dockerfile.vim'
+Bundle 'leafgarland/typescript-vim.git'
 
 filetype plugin indent on
 
