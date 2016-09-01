@@ -9,7 +9,11 @@ set directory=~/.vim/tmp        " Directory to put swap file
 
 " higlight the cursor line
 set cursorline
-set cursorcolumn
+set fillchars=""
+
+" Italic supports
+set t_ZH=[3m
+set t_ZR=[23m
 
 "
 " Tabs & Indentation
@@ -22,10 +26,11 @@ set smartindent   " indents one extra level according to current syntax
 set tabstop=4
 set shiftwidth=4
 set list
-set listchars=eol:ᛎ,trail:‧,tab:▹∙,nbsp:ⅹ
+set listchars=trail:‧,tab:▹∙,nbsp:ⅹ
 if has('gui_running')
-    set listchars=eol:ᛎ,trail:‧,tab:▹∙,nbsp:ⅹ
+    set listchars=trail:‧,tab:▹∙,nbsp:ⅹ
     set lines=50 columns=140
+    set guifont=UbuntuMonoDerivativePowerline\ Nerd\ Font\ Regular\ 14
 endif
 " fixme: should use softtabstop=4 instead of expandtab and setting tabstop
 
@@ -36,24 +41,21 @@ nmap <leader>4 :set tabstop=4<cr>:set shiftwidth=4<cr>
 "
 " Interface
 "
-set ls=2                            " Always show the status line
+set ls=2                           " Always show the status line
 set ruler                           " Show cursor position
 set notitle                         " Don't show title in console title bar
 set novisualbell                    " Don't use the visual bell
 set nowrap                          " Wrap lineource $MYVIMRC
 set showmatch                       " Show matching (){}[]
-set clipboard+=unnamedplus          " "Allow to cp/p from clipboard
+set noshowcmd
+set noshowmode
 set laststatus=2
+set clipboard+=unnamedplus          " "Allow to cp/p from clipboard
 set number
-
 
 map <leader>l 20zl
 map <leader>h 20zh
 imap <leader>s <C-x><C-u>
-
-"Change line numbers color
-autocmd InsertEnter * hi LineNr      ctermfg=16 ctermbg=214 guifg=Orange guibg=#151515
-autocmd InsertLeave * hi LineNr      term=underline ctermfg=59 ctermbg=232 guifg=#605958 guibg=#151515
 
 " Search options
 set incsearch
@@ -64,6 +66,7 @@ if (has('gui_running'))
     set guioptions-=m               " Remove menu bar
     set guioptions-=T               " Remove toolbar
     set guioptions-=r               " Remove right-hand scroll bar
+    set guioptions-=L               " Remove right-hand scroll bar
 endif
 
 " Easily switch between relative & absolute number
@@ -155,7 +158,7 @@ imap jj `
 imap kk \
 
 " TODO get rid of this specific config
-set wildignore=data/**,app/cache/**,web/bundles/**,src/*/*Bundle/vendor,src/*/vendor,old/*,app/lib/*
+set wildignore=data/**,app/cache/**,web/bundles/**,src/*/*Bundle/vendor,src/*/vendor,old/*,app/lib/*,jspm_packages/**
 
 "
 " Vundle configuration
@@ -163,7 +166,10 @@ set wildignore=data/**,app/cache/**,web/bundles/**,src/*/*Bundle/vendor,src/*/ve
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-set tags+=vendor.tags
+au FileType php set tags=php-src.tags,php-vendor.tags
+au FileType javascript set tags=js-lib.tags,js-modules.tags,js-jspm.tags
+au FileType typescript set tags=ts-lib.tags,ts-typings.tags,ts-modules.tags
+au FileType python set tags=python.tags
 
 " Let vundle manage the vundle
 Bundle 'gmarik/vundle'
@@ -171,7 +177,7 @@ Bundle 'gmarik/vundle'
 Bundle 'joonty/vdebug.git'
 Bundle 'The-NERD-tree'
 Bundle 'UltiSnips'
-Bundle 'kien/ctrlp.vim.git'
+Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'ivalkeen/vim-ctrlp-tjump.git'
 Bundle 'arnaud-lb/vim-php-namespace'
 Bundle 'airblade/vim-gitgutter'
@@ -182,6 +188,7 @@ Bundle 'danro/rename.vim.git'
 Bundle 'lunaru/vim-less'
 Bundle 'hail2u/vim-css3-syntax.git'
 Bundle 'bling/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
 Bundle 'godlygeek/tabular.git'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'sjbach/lusty.git'
@@ -199,33 +206,38 @@ Bundle 'mattn/emmet-vim'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'ekalinin/Dockerfile.vim'
 Bundle 'leafgarland/typescript-vim.git'
+Bundle 'rking/ag.vim.git'
+Bundle 'ryanoasis/vim-devicons'
+Bundle 'pangloss/vim-javascript'
+Bundle 'bcicen/vim-vice'
 
 filetype plugin indent on
 
 "
 " Airline
 "
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
 let g:airline_theme='powerlineish'
 let g:airline#extensions#hunks#enabled=0
+let g:airline#extensions#tabline#fnamemod=':t'
+let g:airline#extensions#tabline#fnamecollapse=0
+let g:airline_section_c='%t'
 
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
 endif
 
 " unicode symbols
-let g:airline_left_sep = '»'
 let g:airline_left_sep = '⮀'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '⮂'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_right_sep = ' '
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.paste = ''
+let g:airline_symbols.paste = ''
+let g:airline_symbols.paste = ''
+let g:airline_symbols.whitespace = ''
 
 "
 " PDV
@@ -242,24 +254,28 @@ let g:ctrlp_cmd = 'CtrlP'
 nnoremap <silent> <C-b> :CtrlPBuffer<CR>
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v([\/]\.(git|hg|svn))|([\/]vendor)|([\/]node_modules)|([\/]compiled)|([\/]dist)|([\/]app/lib)|([\/]bower_components)|([\/]doc)$',
+  \ 'dir':  '\v([\/]\.(git|hg|svn))|([\/]vendor)|([\/]node_modules)|([\/]compiled)|([\/]dist)|([\/]app/lib)|([\/]bower_components)|([\/]doc)|([\/]jspm_packages)$',
   \ }
 
 "
 " UltiSnips comportment
 "
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<Leader><Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Leader><Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<Leader><S-Tab>"
 
 "
 " Coloration
 "
 set t_Co=256
 colorscheme molokai
-hi Normal          ctermfg=252 ctermbg=none
-hi Normal          guifg=#F8F8F2 guibg=#303030
-let &colorcolumn="80,120"
+hi Normal          guifg=#F8F8F2 guibg=#1C1C1C
+let &colorcolumn="80,".join(range(120,999),",")
+highlight ColorColumn ctermbg=233 guibg=#2c2d27
+highlight CursorColumn ctermbg=233 guibg=#2c2d27
+highlight CursorLine ctermbg=233 guibg=#2c2d27
+highlight LineNr ctermbg=233 guibg=#2c2d27
+
 
 " force to never use arrow for navigation !
 nmap <Up> <nop>
@@ -275,8 +291,9 @@ vmap <Leader>= :Tabularize /=<CR>
 vnoremap <Leader>> :Tabularize /=><CR>
 vnoremap <Leader>$ :Tabularize /\$/l1r0<CR>
 vnoremap <Leader>\| :Tabularize /\|<CR>
-nnoremap <Leader>t :!ctags -R --PHP-kinds=+cf<CR>
+nnoremap <Leader>t :!ctags -R<CR>
 nnoremap <Leader><C-t> :!ctags -R --PHP-kinds=+cf -h ".js"<CR>
+nnoremap <Leader>tt :!ctags -R -h "*.ts"<CR>
 nnoremap <Leader>v :source ~/.vimrc<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
@@ -317,9 +334,16 @@ map <M-a>v <C-c>
 
 " Easy tags jump
 nmap <silent> <Leader>j "zyiw:exe ":tj ".@z.""<CR>
+nmap <silent> <Leader>J "zyiw:exe ":ptj ".@z.""<CR>
 
 " configure NERDTree
 set modifiable
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+noremap <Leader>nf :NERDTreeFind<CR>
 
 " PHP namespace
 inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
@@ -339,6 +363,8 @@ nmap <silent> <Leader><C-j> :call jsdoc#insert()<CR>
 
 " ctrlp configuration
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window = 'top,order:ttb,min:1,max:8,results:8'
+
 
 " vim-symfony configuration
 let g:symfony_app_console_caller= "php"
@@ -358,3 +384,23 @@ if executable('ag')
 endif
 
 set keywordprg=pdoc
+
+let NERDTreeIgnore=['\gulp-*', '\~$', '\.tags$']
+
+"Use TAB to complete when typing words, else inserts TABs as usual.
+"Uses dictionary and source files to find matching words to complete.
+
+"See help completion for source,
+"Note: usual completion is on <C-n> but more trouble to press all the time.
+"Never type the same word twice and maybe learn a new spellings!
+"Use the Linux dictionary when spelling is in doubt.
+"Window users can copy the file to their machine.
+function! Tab_Or_Complete()
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+    return "\<C-p>"
+  else
+    return "\<Tab>"
+  endif
+endfunction
+
+inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>

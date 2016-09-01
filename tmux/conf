@@ -30,27 +30,26 @@ bind H resize-pane -L 10
 bind-key r source-file ~/.tmux.conf \; display "Config reloaded"
 
 set -g status-fg colour250
-set -g status-bg colour233
+set -g status-bg default
 
 # left side of status bar
  set -g status-left-length 0
- set -g status-left '#[fg=colour233,bg=colour24,nobold]⮀#[fg=colour250,bg=colour24,bold] 😎  #W #[fg=colour24,bg=colour233,nobold]⮀'
+ set -g status-left '#[fg=colour236,bg=colour233,nobold]⮀#[fg=colour250,bg=colour233,bold] 😎  #W #[fg=colour233,bg=colour236,nobold]⮀'
 
-# right side of status bar
- set -g status-right-length 30
- set -g status-right '#[fg=colour24,bg=colour233,nobold]⮂#[fg=colour250,bg=colour24,bold] #(battery Discharging) #[fg=colour232,bg=colour24,nobold]⮂'
+# empty right status
+set -g status-right-length 0
 
 # status bar options
 set-option -g status-justify left         # alignment of windows
-set -g window-status-format ' #W '          # Inactive windows in status bar
-set -g window-status-current-format '#[fg=colour250,bg=colour24,bold] #W '
+set -g window-status-format '#[fg=colour247] #W'         # Inactive windows in status bar
+set -g window-status-current-format '#[fg=colour255,bold] #W'
 
 # message bar
 set -g message-fg colour250
-set -g message-bg colour24
+set -g message-bg colour233
 set -g message-attr bold
-set -g pane-border-fg colour233
-set -g pane-active-border-fg colour24
+set -g pane-border-fg colour236
+set -g pane-active-border-fg colour233
 
 # tmuxinator fix
 set -g base-index 1

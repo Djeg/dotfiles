@@ -2,7 +2,7 @@ tags
 vendor.tags
 Guardfile
 sample/
-test/
 test.*
-test*
 *.orig
+*.tags
+.tagsgen.json

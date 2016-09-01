@@ -255,9 +255,7 @@ endsnippet
 
 snippet getsetd "Generate getter and setter with doc" !b
 /**
- * Get $2
- *
- * @return ${3:string}
+ * @return ${2:string}
  */
 public function get${1/(.*)/\u$1/}()
 {
@@ -265,9 +263,7 @@ public function get${1/(.*)/\u$1/}()
 }
 
 /**
- * Set $2
- *
- * @param $3 \$$1
+ * @param $2 \$$1
  *
  * @return `!p snip.rv = snip.basename`
  */
@@ -297,6 +293,99 @@ public function has${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
     return \$this->$2->contains(\$$1);
 }
 
+public function remove${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    \$this->$2->removeElement(\$$1);
+
+    return \$this;
+}
+endsnippet
+
+snippet getsetsarrd "Generate getters and setters for an array" !b
+/**
+ * @param ${4:Type} \$$1
+ * @param ${5:Type} \$$2
+ *
+ * @return `!p snip.rv = snip.basename`
+ */
+public function add${1/(.*)/\u$1/}(\$$1, \$$2)
+{
+    \$this->$3[$1] = \$$2;
+
+    return \$this;
+}
+
+/**
+ * @return array
+ */
+public function get${1/(.*)/\u$1/}s()
+{
+    return \$this->$2;
+}
+
+/**
+ * @param $4 \$$1
+ *
+ * @return boolean
+ */
+public function has${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    return isset(\$this->$2[\$$1]);
+}
+
+/**
+ * @param $4 \$$1
+ *
+ * @return `!p snip.rv = snip.basename`
+ */
+public function remove${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    if (\$this->has${1/(.*)/\u$1/}(${1/(.*)/\u$1/}(\$$1)) {
+        return \$this;
+    }
+
+    unset(\$this->$2[\$$1]);
+
+    return \$this;
+}
+endsnippet
+
+snippet getsetsd "Generate getters and setters" !b
+/**
+ * @param ${3:Type} \$$1
+ *
+ * @return `!p snip.rv = snip.basename`
+ */
+public function add${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    \$this->$2->add(\$$1);
+
+    return \$this;
+}
+
+/**
+ * @return $3
+ */
+public function get${1/(.*)/\u$1/}s()
+{
+    return \$this->$2->toArray();
+}
+
+/**
+ * @param $3 \$$1
+ *
+ * @return boolean
+ */
+public function has${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    return \$this->$2->contains(\$$1);
+}
+
+/**
+ * @param $3 \$$1
+ *
+ * @return `!p snip.rv = snip.basename`
+ */
 public function remove${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
 {
     \$this->$2->removeElement(\$$1);
@@ -433,14 +522,14 @@ snippet dp "dump" !b
 dump($1);
 endsnippet
 
-snippet /* "doc bloc" !b
+snippet db "doc bloc" !b
 /**
  * $0
  */
 endsnippet
 
 snippet @p "param doc bloc" !i
-@param ${2:type} \$${1:name}
+@param ${1:type} \$${2:name}$0
 endsnippet
 
 snippet @pa "param for object doc bloc" !i
@@ -448,7 +537,7 @@ snippet @pa "param for object doc bloc" !i
 endsnippet
 
 snippet @v "var doc bloc" !i
-@var ${2:type} \$${1:name}
+@var ${1:type}$0
 endsnippet
 
 snippet @va "var for object doc bloc" !i
@@ -461,4 +550,14 @@ endsnippet
 
 snippet @re "return for object doc bloc" !i
 @return \\${1:Namespace}
+endsnippet
+
+snippet @ih "Inherit doc block" !i
+/**
+ * {@inheritdoc}
+ */
+endsnippet
+
+snippet @t "Throws doc block" !i
+@throws ${1:Exception} ${2:description}$0
 endsnippet

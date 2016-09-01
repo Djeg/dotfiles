@@ -45,8 +45,15 @@ snippet attr "attribute"
 ${1:private} ${2:attribute}: ${3:type};$0
 endsnippet
 
-snippet it "Generate an interface"
+snippet int "Generate an interface"
 interface ${1:Name}
+{
+    $0
+}
+endsnippet
+
+snippet eint "Generate interface and export it"
+export interface ${1:Name}
 {
     $0
 }
@@ -83,4 +90,36 @@ endsnippet
 
 snippet the "this equal"
 this.$1 = $2;$0
+endsnippet
+
+snippet desc "Jasmine describe" !b
+describe('${1:description ...}', () => {
+    $0
+});
+endsnippet
+
+snippet it "Jasmine it"
+it('${1:doSomething ....}', () => {
+    $0
+});
+endsnippet
+
+snippet before "Jasmine before each"
+beforeEach(() => {
+    $0
+});
+endsnippet
+
+snippet after "Jasmine after each"
+afterEach(() => {
+    $0
+});
+endsnippet
+
+snippet exp "jasmine expect"
+expect($1).$2;$0
+endsnippet
+
+snippet impd "import default"
+import ${1:default} from '${2:path}';$0
 endsnippet

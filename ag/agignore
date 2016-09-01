@@ -15,3 +15,4 @@ app/lib/
 node_modules/
 packages/
 typings/
+jspm_packages/

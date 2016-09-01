@@ -8,6 +8,6 @@ windows:
       panes:
         - clear
         - clear
-        - guard
-        - selenium
+        - tagsgen .
+        - clear
         - php -S localhost:8000 -t web/
