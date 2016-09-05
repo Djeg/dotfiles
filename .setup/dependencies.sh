@@ -16,7 +16,7 @@ sudo apt-get update
 echo "DONE"
 
 echo "System dependencies ..."
-sudo apt-get install vim vim-gtk php7.0 php7.0-curl php7.0-mongodb php7.0-gd php7.0-xml php7.0-intl php7.0-ldap php7.0-sqlite3 php7.0-mysql \
+sudo apt-get install vim vim-gtk php7.0 php7.0-curl php7.0-gd php7.0-xml php7.0-intl php7.0-ldap php7.0-sqlite3 php7.0-mysql \
     mongodb sqlite ruby ruby-dev golang nodejs tmux tree git xclip openjdk-9-jre \
     curl firefox libxss1 libappindicator1 libindicator7 zsh terminator silversearcher-ag \
     htop lynx
