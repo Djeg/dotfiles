@@ -104,6 +104,9 @@ hi Visual                        guibg=#403D3D
 hi WarningMsg      guifg=#FFFFFF guibg=#333333 gui=bold
 hi WildMenu        guifg=#66D9EF guibg=#000000
 
+hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
+
 if s:molokai_original == 1
    hi Normal          guifg=#F8F8F2 guibg=#4D4D4D
    hi Comment         guifg=#75715E
@@ -131,6 +134,8 @@ if &t_Co > 255
    hi TabLineFill     ctermfg=0   ctermbg=234
    hi TabLineSel      ctermfg=231   ctermbg=234
    hi TabLine         ctermbg=232   ctermbg=0 cterm=none
+
+   " Indent guide colors
 
    if s:molokai_original == 1
       hi Normal                   ctermbg=16

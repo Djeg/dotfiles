@@ -1,8 +1,10 @@
 #!/bin/bash
 echo "Installing vim, please wait ..."
 
-cd ~ && ln -s .dotfiles/vim .vim
-cd ~ && ln -s .dotfiles/vim/vimrc .vimrc
+dir=`dirname $0`
+
+cd ~ && ln -s $dir/vim $HOME/../.vim
+cd ~ && ln -s $dir/vim/vimrc $HOME/../.vimrc
 
 echo "Bundles ..."
 vim +BundleInstall +qall
