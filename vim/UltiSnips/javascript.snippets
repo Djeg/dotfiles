@@ -1,139 +1,234 @@
+# IMPORT
+snippet ii "import" !b
+import '$1';$0
+endsnippet
+
+snippet ip "Import from" !b
+import {$1} from '$2';$0
+endsnippet
+
+snippet id "Import default from" !b
+import $1 from '$2';$0
+endsnippet
+
+snippet ia "Import all from" !b
+import * as $1 from '$2';$0
+endsnippet
+
+# EXPORT
 snippet req "Require a nodejs module" !b
-var ${1:module} = require('${2:path}');
+var $1 = require('$2');
 endsnippet
 
 snippet exp "Export nodejs module" !b
-module.exports = ${1:module};
-endsnippet
-
-snippet fun "Standard js function" !b
-function ${1:name} (${2:args}) {
-    $0
-};
-endsnippet
-
-snippet cl "console.log" !b
-console.log($1);
-endsnippet
-
-snippet func "Standard javascript function" !b
-var ${1:name} = function (${2:args}) {
-    $0
-};
-endsnippet
-
-snippet fum "A prototype method" !b
-${1:class}.prototype.${2:method} = function ($3) {
-    $0
-};
-endsnippet
-
-snippet pfunc "Standard member method" !b
-this.${1:name} = function (${2:args}) {
-    $0
-};
-endsnippet
-
-snippet callb "Standard javascript callback" !b
-function (${1:args}) {
-    $0
-}
-endsnippet
-
-snippet str "use strict snippet" !b
-'use strict';
-endsnippet
-
-snippet njcl "JSClass standard class for nodejs" !b
-'use strict';
-
-var Class = require('jsclass/src/core').Class;
-
-var ${1:ClassName} = new Class(${2:Parent, }{
-        /**
-         * @constructs $1
-         */
-        initialize: function (${3:args}) {
-                $0
-        },
-});
-
 module.exports = $1;
 endsnippet
 
-snippet jcl "JSClass standard class for browser" !b
-JS.require(${1:'JS.Class'}, function (${2:Class}), {
-
-var ${3:ClassName} = new Class(${4:Parent, }{
-        initialize: function (${5:args}) {
-                $0
-        },
-});
-
-});
+snippet ex "export something (ES6)" !b
+export {$1};
 endsnippet
 
-snippet jm "JSClass standard method" !b
-${1:name}: function (${2:args}) {
-        $0
-},
+snippet exd "export default (ES6)" !b
+export default $1;
 endsnippet
 
-snippet mod "Standard wrap" !b
-;(function ($1) {
-    'use strict';
-
-    $0
-})($2);
-endsnippet
-
-snippet cb "Standard callback" !b
-function $1 ($2) {
-        $0
+# FUNCTION
+snippet fu "function" !b
+function $1($2) {
+	$0
 }
 endsnippet
 
-snippet if "standard condition" !b
+snippet afu "async function" !b
+async function $1($2) {
+	$0
+}
+endsnippet
+
+snippet efu "export function" !b
+export$3 function $1($2) {
+	$0
+}
+endsnippet
+
+snippet eafu "Export async functions" !b
+export$3 async function $1($2) {
+	$0
+}
+endsnippet
+
+snippet gfu "generator function" !b
+function* $1($2) {
+	$0
+}
+endsnippet
+
+snippet agfu "async generator function" !b
+async function* $1($2)
+endsnippet
+
+snippet egfu "export generator function" !b
+export$3 function* $1($2) {
+	$0
+}
+endsnippet
+
+snippet eagfu "export async generator function" !b
+export$3 async function* $1($2) {
+	$0
+}
+endsnippet
+
+# CLASS
+snippet cl "class" !b
+class $1
+{
+	$0
+}
+endsnippet
+
+snippet ecl "export class" !b
+export$2 class $1
+{
+	$0
+}
+endsnippet
+
+snippet cons "constructor" !b
+constructor($1)
+{
+	$0
+}
+endsnippet
+
+snippet fm "class method" !b
+$1($2)
+{
+	$0
+}
+endsnippet
+
+snippet afm "async class method" !b
+async $1($2)
+{
+	$0
+}
+endsnippet
+
+snippet gfm "generator class method" !b
+$1*($2)
+{
+	$0
+}
+endsnippet
+
+snippet agfm "async generator class method" !b
+async $1*($2)
+{
+	$0
+}
+endsnippet
+
+# DEBUG
+snippet cl "console log" !b
+console.log($1);$0
+endsnippet
+
+snippet cle "console error" !b
+console.error($1);$0
+endsnippet
+
+snippet db "debugger" !b
+debugger;
+endsnippet
+
+snippet cld "console log and debugger" !b
+console.log($1);
+debugger;$0
+endsnippet
+
+# STATEMENT
+snippet fr "for" !b
+for (let $1 = 0; $1 < $2; $1++) {
+	$0
+}
+endsnippet
+
+snippet fo "for..of" !b
+for (let $1 of $2) {
+	$0
+}
+endsnippet
+
+snippet fi "for..in" !b
+for (let $1 in $2) {
+	$0
+}
+endsnippet
+
+snippet fkv "for[key,value]..of" !b
+for (let [$1, $2] of $3) {
+	$0
+}
+endsnippet
+
+snippet fa "for await" !b
+for await (let $1 of $2) {
+	$0
+}
+endsnippet
+
+snippet if "if" !b
 if ($1) {
-        $0
+	$0
 }
 endsnippet
 
-snippet for "for standard loop" !b
-for (var ${1:i} = 0; i < ${2:limit}; ${3:i++}) {
-        $0
+snippet sw "switch" !b
+switch ($1) {
+	$0
 }
 endsnippet
 
-snippet fori "for in lopp" !b
-for (var ${1:key} in ${2:object}) {
-        $0
+snippet wh "while" !b
+while ($1) {
+	$0
 }
 endsnippet
 
-snippet desc "Jasmine descrive" !b
-describe('${1:something}', function () {
-    $0
+#JASMINE
+snippet desc "Describe" !b
+describe('$1', () => {
+	$0
 });
 endsnippet
 
-snippet it "Jasmine spec step" !b
-it('${1:something}', function () {
-    $0
+snippet adesc "Asynchronous describe" !b
+describe('$1', async (next) => {
+	$0
 });
 endsnippet
 
-snippet acl "angular controllerc" :b
-;(function (app) {
-    'use strict';
+snippet it "It" !b
+it('$1', () => {
+	$0
+});
+endsnippet
 
-    var $3 = function (${5:arguments}) {
-        $0
-    };
+snippet ait "async it" !b
+it('$1', async (next) => {
+	$0
+});
+endsnippet
 
-    app.controller('${3:MyController}', [
-        ${4:dependencies},
-	$3
-    ]);
-})($1);
+snippet befo "before each" !b
+beforeEach(() => {
+	$0
+});
+endsnippet
+
+snippet abefo "async before each" !b
+beforeEach(acyns (next) => {
+	$0
+});
 endsnippet

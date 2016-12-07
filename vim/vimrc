@@ -54,7 +54,6 @@ set noshowcmd
 set noshowmode
 set laststatus=2
 set clipboard+=unnamedplus          " "Allow to cp/p from clipboard
-set number
 
 map <leader>l 20zl
 map <leader>h 20zh
@@ -141,6 +140,9 @@ au BufNewFile,BufRead *.dart set ft=dart
 " Use he mardown syntax for *.md files
 au BufNewFile,BufRead *md set ft=markdown
 
+" Use the typescript syntax for *.ts files
+au BufNewFile,BufRead *.ts set ft=typescript
+
 match ErrorMsg '\s\+$'
 silent! set listchars+=nbsp:~
 " automatically remove trailing whitespace before write
@@ -170,7 +172,7 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 au FileType php set tags=php-src.tags,php-vendor.tags
-au FileType javascript set tags=js-lib.tags,js-modules.tags,js-jspm.tags
+au FileType javascript set tags=js-lib.tags,js-src.tags,js-modules.tags,js-jspm.tags
 au FileType typescript set tags=ts-lib.tags,ts-typings.tags,ts-modules.tags
 au FileType python set tags=python.tags
 
@@ -209,10 +211,8 @@ Bundle 'scrooloose/nerdcommenter.git'
 Bundle 'mattn/emmet-vim'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'ekalinin/Dockerfile.vim'
-Bundle 'leafgarland/typescript-vim.git'
 Bundle 'rking/ag.vim.git'
 Bundle 'ryanoasis/vim-devicons'
-Bundle 'pangloss/vim-javascript'
 Bundle 'bcicen/vim-vice'
 Bundle 'nathanaelkane/vim-indent-guides.git'
 
@@ -234,7 +234,7 @@ endif
 
 " unicode symbols
 let g:airline_left_sep = '⮀'
-let g:airline_right_sep = ' '
+let g:airline_right_sep = ''
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.linenr = ''
@@ -272,13 +272,14 @@ let g:UltiSnipsJumpBackwardTrigger="<Leader><S-Tab>"
 "
 " Coloration
 "
-set t_Co=256
 colorscheme molokai
+set t_Co=256
 hi Normal          guifg=#F8F8F2 guibg=#1C1C1C
+hi Normal ctermbg=none
 let &colorcolumn="80,".join(range(120,999),",")
-highlight ColorColumn ctermbg=233 guibg=#2c2d27
-highlight CursorColumn ctermbg=233 guibg=#2c2d27
-highlight CursorLine ctermbg=233 guibg=#2c2d27
+highlight ColorColumn ctermbg=232 guibg=#2c2d27
+highlight CursorColumn ctermbg=232 guibg=#2c2d27
+highlight CursorLine ctermbg=232 guibg=#2c2d27
 highlight LineNr ctermbg=233 guibg=#2c2d27
 
 
@@ -381,13 +382,6 @@ noremap <silent> <C-t> :CtrlPTag<cr>
 
 " Omnifund
 set omnifunc=syntaxcomplete#Complete
-
-" Indent Guides
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=234
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=234
 
 " speep up Ctrl-P
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'

@@ -120,6 +120,14 @@ snippet exp "jasmine expect"
 expect($1).$2;$0
 endsnippet
 
-snippet impd "import default"
+snippet ip "import"
+import {${1:default}} from '${2:path}';$0
+endsnippet
+
+snippet ia "import all"
+import * as ${1:name} from '${2:path}';$0
+endsnippet
+
+snippet id "import default"
 import ${1:default} from '${2:path}';$0
 endsnippet

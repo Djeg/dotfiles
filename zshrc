@@ -7,34 +7,34 @@ setopt vi
 setopt auto_menu
 
 function rightPrompt {
-    color_end="%{\e[232;m%}"
-    color_arrow="%{\e[1;48;5;232;38;5;233m%}"
-    color_arrow_error="%{\e[1;48;5;232;38;5;196m%}"
-    color_arrow_to_git="%{\e[1;48;5;237;38;5;233m%}"
+    color_end="%{\e[233;m%}"
+    color_arrow="%{\e[1;48;5;233;38;5;232m%}"
+    color_arrow_error="%{\e[1;48;5;233;38;5;196m%}"
+    color_arrow_to_git="%{\e[1;48;5;237;38;5;232m%}"
     color_arrow_to_git_error="%{\e[1;48;5;237;38;5;196m%}"
-    color_start="%{\e[1;48;5;233;38;5;254m%}"
+    color_start="%{\e[1;48;5;232;38;5;254m%}"
     color_start_error="%{\e[1;48;5;196;38;5;254m%}"
     color_git="%{\e[1;48;5;237;38;5;253m%}"
-    color_git_arrow="%{\e[1;48;5;232;38;5;237m%}"
-    color_arrow_black="%{\e[1;48;5;233;38;5;232m%}"
-    color_arrow_black_error="%{\e[1;48;5;196;38;5;232m%}"
+    color_git_arrow="%{\e[1;48;5;233;38;5;237m%}"
+    color_arrow_black="%{\e[1;48;5;232;38;5;233m%}"
+    color_arrow_black_error="%{\e[1;48;5;196;38;5;233m%}"
 
     echo ""
 }
 
 function prompt {
     last_status=%?
-    color_arrow_black="%{\e[1;48;5;233;38;5;232m%}"
-    color_arrow_black_error="%{\e[1;48;5;196;38;5;232m%}"
-    color_end="%{\e[232;m%}"
-    color_arrow="%{\e[1;48;5;232;38;5;233m%}"
-    color_arrow_error="%{\e[1;48;5;232;38;5;196m%}"
-    color_arrow_to_git="%{\e[1;48;5;237;38;5;233m%}"
+    color_arrow_black="%{\e[1;48;5;232;38;5;233m%}"
+    color_arrow_black_error="%{\e[1;48;5;196;38;5;233m%}"
+    color_end="%{\e[233;m%}"
+    color_arrow="%{\e[1;48;5;233;38;5;232m%}"
+    color_arrow_error="%{\e[1;48;5;233;38;5;196m%}"
+    color_arrow_to_git="%{\e[1;48;5;237;38;5;232m%}"
     color_arrow_to_git_error="%{\e[1;48;5;237;38;5;196m%}"
-    color_start="%{\e[1;48;5;233;38;5;254m%}"
+    color_start="%{\e[1;48;5;232;38;5;254m%}"
     color_start_error="%{\e[1;48;5;196;38;5;254m%}"
     color_git="%{\e[1;48;5;237;38;5;253m%}"
-    color_git_arrow="%{\e[1;48;5;232;38;5;237m%}"
+    color_git_arrow="%{\e[1;48;5;233;38;5;237m%}"
     git_branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 
     smiley="%(?,${color_start},${color_start_error}) %c "
@@ -52,12 +52,7 @@ PROMPT='$(prompt)'
 RPROMPT='$(rightPrompt)'
 
 # defined alias
-alias sf="./app/console"
 alias sf3="./bin/console"
-alias phpspec="./bin/phpspec"
-alias spec="./bin/phpspec run -fpretty"
-alias specn="./bin/phpspec run -fnyan.cat"
-alias behat="./bin/behat"
 alias tmux='tmux -2'
 alias g="git"
 alias ls="ls --color"
@@ -87,15 +82,18 @@ alias gru="grep -nri --color"
 alias gpr="hub pull-request -b "
 alias composer="php ~/.bin/composer"
 alias nw="~/.nw/nw ."
+alias spec="phpspec run -fpretty"
 
 bindkey ^R history-incremental-search-backward
 
 export GOPATH="$HOME/.go"
 export GOBIN="$HOME/.go/bin"
 export GOROOT="/usr/lib/go"
-export PATH="vendor/bin:node_modules/.bin:bin:$PATH:$HOME/.rvm/bin:$HOME/.composer/vendor/bin:$GOPATH/bin:$HOME/.bin" # Add RVM to PATH for scripting
+export PATH="bin:vendor/bin:node_modules/.bin:$PATH:$HOME/.rvm/bin:$HOME/.composer/vendor/bin:$GOPATH/bin:$HOME/.bin" # Add RVM to PATH for scripting
 export EDITOR='vim'
 export TERM=screen-256color-bce
+export PROJECT_FOLDER="/home/djeg/Project"
+export SSH_FOLDER="/home/djeg/.ssh"
 
 # configure tmuxinator
 source ~/.bin/tmuxinator.zsh
