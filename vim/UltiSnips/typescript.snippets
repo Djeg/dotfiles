@@ -1,133 +1,249 @@
-snippet mod "Create a module" !b
-module ${1:Name} {
-    $0
+# IMPORT
+snippet ii "import" !b
+import '$1';$0
+endsnippet
+
+snippet ip "Import from" !b
+import {$1} from '$2';$0
+endsnippet
+
+snippet id "Import default from" !b
+import $1 from '$2';$0
+endsnippet
+
+snippet ia "Import all from" !b
+import * as $1 from '$2';$0
+endsnippet
+
+# EXPORT
+snippet req "Require a nodejs module" !b
+var $1 = require('$2');
+endsnippet
+
+snippet exp "Export nodejs module" !b
+module.exports = $1;
+endsnippet
+
+snippet ex "export something (ES6)" !b
+export {$1};
+endsnippet
+
+snippet exd "export default (ES6)" !b
+export default $1;
+endsnippet
+
+# FUNCTION
+snippet fu "function" !b
+function $1($2) {
+	$0
 }
 endsnippet
 
-snippet cl "Create a class" !b
-class ${1:Name}
+snippet afu "async function" !b
+async function $1($2) {
+	$0
+}
+endsnippet
+
+snippet efu "export function" !b
+export$3 function $1($2) {
+	$0
+}
+endsnippet
+
+snippet eafu "Export async functions" !b
+export$3 async function $1($2) {
+	$0
+}
+endsnippet
+
+snippet gfu "generator function" !b
+function* $1($2) {
+	$0
+}
+endsnippet
+
+snippet agfu "async generator function" !b
+async function* $1($2)
+endsnippet
+
+snippet egfu "export generator function" !b
+export$3 function* $1($2) {
+	$0
+}
+endsnippet
+
+snippet eagfu "export async generator function" !b
+export$3 async function* $1($2) {
+	$0
+}
+endsnippet
+
+# CLASS
+snippet cl "class" !b
+class $1
 {
-    $0
+	$0
 }
 endsnippet
 
-snippet ecl "Create a class and export it" !b
-export class ${1:Name}
+snippet ecl "export class" !b
+export class $1
 {
-    $0
+	$0
 }
 endsnippet
 
-snippet mcl "Create a class in a module" !b
-module ${1:ModuleName} {
-    export class ${2: ClassName}
-    {
-        $0
-    }
-}
-endsnippet
-
-snippet cons "Constructor"
-constructor(${1:arguments})
+snippet edcl "export default class" !b
+export default class $1
 {
-    $0
+	$0
 }
+
 endsnippet
 
-snippet fum "Generate a method"
-${1:methodName}(${2:arguments}): ${3:void}
+snippet cons "constructor" !b
+constructor($1)
 {
-    $0
+	$0
 }
 endsnippet
 
-snippet attr "attribute"
-${1:private} ${2:attribute}: ${3:type};$0
-endsnippet
-
-snippet int "Generate an interface"
-interface ${1:Name}
+snippet fm "class method" !b
+$1($2)
 {
-    $0
+	$0
 }
 endsnippet
 
-snippet eint "Generate interface and export it"
-export interface ${1:Name}
+snippet afm "async class method" !b
+async $1($2)
 {
-    $0
+	$0
 }
 endsnippet
 
-snippet mit "Module interface and export it"
-module ${1:ModuleName} {
-    export interface ${2:InterfaceName}
-    {
-        $0
-    }
+snippet gfm "generator class method" !b
+$1*($2)
+{
+	$0
 }
 endsnippet
 
-snippet attri "Interface attribute"
-${1:name}: ${2:type};$0
+snippet agfm "async generator class method" !b
+async $1*($2)
+{
+	$0
+}
 endsnippet
 
-snippet fumi "Interface method"
-${1:name}(${2:arguments}): ${3:void};$0
+snippet int "interface" !b
+interface $1
+{
+	$0
+}
 endsnippet
 
-snippet fui "function interface"
-(${1:arguments}): ${2:void};$0
+# DEBUG
+snippet cl "console log" !b
+console.log($1);$0
 endsnippet
 
-snippet ari "array interface"
-[index: ${1:string}]: ${2:string};$0
+snippet cle "console error" !b
+console.error($1);$0
 endsnippet
 
-snippet th "this snippet"
-this.$1;$0
+snippet db "debugger" !b
+debugger;
 endsnippet
 
-snippet the "this equal"
-this.$1 = $2;$0
+snippet cld "console log and debugger" !b
+console.log($1);
+debugger;$0
 endsnippet
 
-snippet desc "Jasmine describe" !b
-describe('${1:description ...}', () => {
-    $0
+# STATEMENT
+snippet fr "for" !b
+for (let $1 = 0; $1 < $2; $1++) {
+	$0
+}
+endsnippet
+
+snippet fo "for..of" !b
+for (let $1 of $2) {
+	$0
+}
+endsnippet
+
+snippet fi "for..in" !b
+for (let $1 in $2) {
+	$0
+}
+endsnippet
+
+snippet fkv "for[key,value]..of" !b
+for (let [$1, $2] of $3) {
+	$0
+}
+endsnippet
+
+snippet fa "for await" !b
+for await (let $1 of $2) {
+	$0
+}
+endsnippet
+
+snippet if "if" !b
+if ($1) {
+	$0
+}
+endsnippet
+
+snippet sw "switch" !b
+switch ($1) {
+	$0
+}
+endsnippet
+
+snippet wh "while" !b
+while ($1) {
+	$0
+}
+endsnippet
+
+#JASMINE
+snippet desc "Describe" !b
+describe('$1', () => {
+	$0
 });
 endsnippet
 
-snippet it "Jasmine it"
-it('${1:doSomething ....}', () => {
-    $0
+snippet adesc "Asynchronous describe" !b
+describe('$1', async (next) => {
+	$0
 });
 endsnippet
 
-snippet before "Jasmine before each"
+snippet it "It" !b
+it('$1', () => {
+	$0
+});
+endsnippet
+
+snippet ait "async it" !b
+it('$1', async (next) => {
+	$0
+});
+endsnippet
+
+snippet befo "before each" !b
 beforeEach(() => {
-    $0
+	$0
 });
 endsnippet
 
-snippet after "Jasmine after each"
-afterEach(() => {
-    $0
+snippet abefo "async before each" !b
+beforeEach(acyns (next) => {
+	$0
 });
-endsnippet
-
-snippet exp "jasmine expect"
-expect($1).$2;$0
-endsnippet
-
-snippet ip "import"
-import {${1:default}} from '${2:path}';$0
-endsnippet
-
-snippet ia "import all"
-import * as ${1:name} from '${2:path}';$0
-endsnippet
-
-snippet id "import default"
-import ${1:default} from '${2:path}';$0
 endsnippet

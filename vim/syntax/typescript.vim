@@ -222,100 +222,100 @@ syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}/ transparen
 if version >= 508 || !exists("did_typescript_syn_inits")
   if version < 508
     let did_typescript_syn_inits = 1
-    command -nargs=+ HiLink hi link <args>
+    command -nargs=+ HiLinkT hi link <args>
   else
-    command -nargs=+ HiLink hi def link <args>
+    command -nargs=+ HiLinkT hi def link <args>
   endif
 
   "typescript highlighting
-  HiLink typescriptParameters Operator
-  HiLink typescriptSuperBlock Operator
+  HiLinkT typescriptParameters Operator
+  HiLinkT typescriptSuperBlock Operator
 
-  HiLink typescriptEndColons Exception
-  HiLink typescriptOpSymbols Operator
-  HiLink typescriptLogicSymbols Boolean
-  HiLink typescriptBraces Function
-  HiLink typescriptParens Operator
-  HiLink typescriptComment Comment
-  HiLink typescriptLineComment Comment
-  HiLink typescriptRefComment Include
-  HiLink typescriptRefS String
-  HiLink typescriptRefD String
-  HiLink typescriptDocComment Comment
-  HiLink typescriptCommentTodo Todo
-  HiLink typescriptCvsTag Function
-  HiLink typescriptDocTags Special
-  HiLink typescriptDocSeeTag Function
-  HiLink typescriptDocParam Function
-  HiLink typescriptStringS String
-  HiLink typescriptStringD String
-  HiLink typescriptStringB String
-  HiLink typescriptInterpolationDelimiter Delimiter
-  HiLink typescriptRegexpString String
-  HiLink typescriptGlobal Constant
-  HiLink typescriptCharacter Character
-  HiLink typescriptPrototype Type
-  HiLink typescriptConditional Conditional
-  HiLink typescriptBranch Conditional
-  HiLink typescriptIdentifier Identifier
-  HiLink typescriptRepeat Repeat
-  HiLink typescriptStatement Statement
-  HiLink typescriptFuncKeyword Function
-  HiLink typescriptMessage Keyword
-  HiLink typescriptDeprecated Exception
-  HiLink typescriptError Error
-  HiLink typescriptParensError Error
-  HiLink typescriptParensErrA Error
-  HiLink typescriptParensErrB Error
-  HiLink typescriptParensErrC Error
-  HiLink typescriptReserved Keyword
-  HiLink typescriptOperator Operator
-  HiLink typescriptType Type
-  HiLink typescriptNull Type
-  HiLink typescriptNumber Number
-  HiLink typescriptFloat Number
-  HiLink typescriptDecorators Special
-  HiLink typescriptBoolean Boolean
-  HiLink typescriptLabel Label
-  HiLink typescriptSpecial Special
-  HiLink typescriptSource Special
-  HiLink typescriptGlobalObjects Special
-  HiLink typescriptExceptions Special
+  HiLinkT typescriptEndColons Exception
+  HiLinkT typescriptOpSymbols Operator
+  HiLinkT typescriptLogicSymbols Boolean
+  HiLinkT typescriptBraces Function
+  HiLinkT typescriptParens Operator
+  HiLinkT typescriptComment Comment
+  HiLinkT typescriptLineComment Comment
+  HiLinkT typescriptRefComment Include
+  HiLinkT typescriptRefS String
+  HiLinkT typescriptRefD String
+  HiLinkT typescriptDocComment Comment
+  HiLinkT typescriptCommentTodo Todo
+  HiLinkT typescriptCvsTag Function
+  HiLinkT typescriptDocTags Special
+  HiLinkT typescriptDocSeeTag Function
+  HiLinkT typescriptDocParam Function
+  HiLinkT typescriptStringS String
+  HiLinkT typescriptStringD String
+  HiLinkT typescriptStringB String
+  HiLinkT typescriptInterpolationDelimiter Delimiter
+  HiLinkT typescriptRegexpString String
+  HiLinkT typescriptGlobal Constant
+  HiLinkT typescriptCharacter Character
+  HiLinkT typescriptPrototype Type
+  HiLinkT typescriptConditional Conditional
+  HiLinkT typescriptBranch Conditional
+  HiLinkT typescriptIdentifier Identifier
+  HiLinkT typescriptRepeat Repeat
+  HiLinkT typescriptStatement Statement
+  HiLinkT typescriptFuncKeyword Function
+  HiLinkT typescriptMessage Keyword
+  HiLinkT typescriptDeprecated Exception
+  HiLinkT typescriptError Error
+  HiLinkT typescriptParensError Error
+  HiLinkT typescriptParensErrA Error
+  HiLinkT typescriptParensErrB Error
+  HiLinkT typescriptParensErrC Error
+  HiLinkT typescriptReserved Keyword
+  HiLinkT typescriptOperator Operator
+  HiLinkT typescriptType Type
+  HiLinkT typescriptNull Type
+  HiLinkT typescriptNumber Number
+  HiLinkT typescriptFloat Number
+  HiLinkT typescriptDecorators Special
+  HiLinkT typescriptBoolean Boolean
+  HiLinkT typescriptLabel Label
+  HiLinkT typescriptSpecial Special
+  HiLinkT typescriptSource Special
+  HiLinkT typescriptGlobalObjects Special
+  HiLinkT typescriptExceptions Special
 
-  HiLink typescriptDomErrNo Constant
-  HiLink typescriptDomNodeConsts Constant
-  HiLink typescriptDomElemAttrs Label
-  HiLink typescriptDomElemFuncs PreProc
+  HiLinkT typescriptDomErrNo Constant
+  HiLinkT typescriptDomNodeConsts Constant
+  HiLinkT typescriptDomElemAttrs Label
+  HiLinkT typescriptDomElemFuncs PreProc
 
-  HiLink typescriptHtmlElemAttrs Label
-  HiLink typescriptHtmlElemFuncs PreProc
+  HiLinkT typescriptHtmlElemAttrs Label
+  HiLinkT typescriptHtmlElemFuncs PreProc
 
-  HiLink typescriptCssStyles Label
+  HiLinkT typescriptCssStyles Label
 
   " Ajax Highlighting
-  HiLink typescriptBrowserObjects Constant
+  HiLinkT typescriptBrowserObjects Constant
 
-  HiLink typescriptDOMObjects Constant
-  HiLink typescriptDOMMethods Function
-  HiLink typescriptDOMProperties Special
+  HiLinkT typescriptDOMObjects Constant
+  HiLinkT typescriptDOMMethods Function
+  HiLinkT typescriptDOMProperties Special
 
-  HiLink typescriptAjaxObjects Constant
-  HiLink typescriptAjaxMethods Function
-  HiLink typescriptAjaxProperties Special
+  HiLinkT typescriptAjaxObjects Constant
+  HiLinkT typescriptAjaxMethods Function
+  HiLinkT typescriptAjaxProperties Special
 
-  HiLink typescriptFuncDef Title
-  HiLink typescriptFuncArg Special
-  HiLink typescriptFuncComma Operator
+  HiLinkT typescriptFuncDef Title
+  HiLinkT typescriptFuncArg Special
+  HiLinkT typescriptFuncComma Operator
 
-  HiLink typescriptHtmlEvents Special
-  HiLink typescriptHtmlElemProperties Special
+  HiLinkT typescriptHtmlEvents Special
+  HiLinkT typescriptHtmlElemProperties Special
 
-  HiLink typescriptEventListenerKeywords Keyword
+  HiLinkT typescriptEventListenerKeywords Keyword
 
-  HiLink typescriptNumber Number
-  HiLink typescriptPropietaryObjects Constant
+  HiLinkT typescriptNumber Number
+  HiLinkT typescriptPropietaryObjects Constant
 
-  delcommand HiLink
+  delcommand HiLinkT
 endif
 
 " Define the htmltypescript for HTML syntax html.vim

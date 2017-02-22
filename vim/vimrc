@@ -12,6 +12,7 @@ set directory=~/.vim/tmp        " Directory to put swap file
 
 " higlight the cursor line
 set cursorline
+set cursorcolumn
 set fillchars=""
 
 " Italic supports
@@ -54,6 +55,7 @@ set noshowcmd
 set noshowmode
 set laststatus=2
 set clipboard+=unnamedplus          " "Allow to cp/p from clipboard
+set number
 
 map <leader>l 20zl
 map <leader>h 20zh
@@ -142,6 +144,7 @@ au BufNewFile,BufRead *md set ft=markdown
 
 " Use the typescript syntax for *.ts files
 au BufNewFile,BufRead *.ts set ft=typescript
+au BufNewFile,BufRead *.tsx set ft=typescript
 
 match ErrorMsg '\s\+$'
 silent! set listchars+=nbsp:~
@@ -163,7 +166,7 @@ imap jj `
 imap kk \
 
 " TODO get rid of this specific config
-set wildignore=data/**,app/cache/**,web/bundles/**,src/*/*Bundle/vendor,src/*/vendor,old/*,app/lib/*,jspm_packages/**
+set wildignore=data/**,app/cache/**,web/bundles/**,src/*/*Bundle/vendor,src/*/vendor,old/*,app/lib/*,jspm_packages/**,_vimrc_local.vim
 
 "
 " Vundle configuration
@@ -173,7 +176,7 @@ call vundle#rc()
 
 au FileType php set tags=php-src.tags,php-vendor.tags
 au FileType javascript set tags=js-lib.tags,js-src.tags,js-modules.tags,js-jspm.tags
-au FileType typescript set tags=ts-lib.tags,ts-typings.tags,ts-modules.tags
+au FileType typescript set tags=ts-lib.tags,ts-typings.tags,ts-modules.tags,ts-src.tags
 au FileType python set tags=python.tags
 
 " Let vundle manage the vundle
@@ -215,6 +218,8 @@ Bundle 'rking/ag.vim.git'
 Bundle 'ryanoasis/vim-devicons'
 Bundle 'bcicen/vim-vice'
 Bundle 'nathanaelkane/vim-indent-guides.git'
+Bundle 'LucHermitte/lh-vim-lib'
+Bundle 'LucHermitte/local_vimrc'
 
 filetype plugin indent on
 
@@ -280,7 +285,7 @@ let &colorcolumn="80,".join(range(120,999),",")
 highlight ColorColumn ctermbg=232 guibg=#2c2d27
 highlight CursorColumn ctermbg=232 guibg=#2c2d27
 highlight CursorLine ctermbg=232 guibg=#2c2d27
-highlight LineNr ctermbg=233 guibg=#2c2d27
+highlight LineNr ctermbg=232 guibg=#2c2d27
 
 
 " force to never use arrow for navigation !
@@ -357,6 +362,13 @@ noremap <Leader>u :call PhpInsertUse()<CR>
 inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
 noremap <Leader>e :call PhpExpandClass()<CR>
 
+" Fold shortcuts
+noremap <Leader>ef :setlocal foldmethod=syntax<CR>
+noremap <Leader>df :setlocal foldmethod=manual<CR>
+noremap <Leader>fA zR
+noremap <Leader>fC zM
+noremap <Leader>ff zA
+
 " ZEN coding shortcuts ;)
 nmap <silent> <Leader>z :call emmet#expandAbbr(3,"")<CR>i
 imap <silent> <Leader>z <Esc>h :call emmet#expandAbbr(3,"")<CR>i
@@ -386,9 +398,12 @@ set omnifunc=syntaxcomplete#Complete
 " speep up Ctrl-P
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --path-to-agignore=~/.agignore -g ""'
+  if filereadable('.agignore')
+      let g:ctrlp_user_command = 'ag %s -l --nocolor --path-to-agignore=.agignore -g ""'
+  else
+      let g:ctrlp_user_command = 'ag %s -l --nocolor --path-to-agignore=~/.agignore -g ""'
+  endif
 endif
-
 
 set keywordprg=pdoc
 
@@ -411,3 +426,5 @@ function! Tab_Or_Complete()
 endfunction
 
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+
+call lh#local_vimrc#munge('whitelist', $HOME.'/Project')

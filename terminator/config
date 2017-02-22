@@ -15,7 +15,7 @@
     icon_bell = False
     show_titlebar = False
     custom_command = zsh
-    font = FantasqueSansMono Nerd Font 16
+    font = FantasqueSansMono Nerd Font 13
     background_color = "#121212"
     cursor_blink = False
   [[invisible]]
