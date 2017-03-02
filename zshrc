@@ -84,6 +84,7 @@ alias composer="php ~/.bin/composer"
 alias nw="~/.nw/nw ."
 alias spec="phpspec run -fpretty"
 
+bindkey -v
 bindkey ^R history-incremental-search-backward
 
 export GOPATH="$HOME/.go"

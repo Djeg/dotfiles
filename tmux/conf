@@ -7,14 +7,17 @@ unbind C-b
 bind M-a send-prefix
 
 # split window
-bind v split-window -h
-bind s split-window -v
+bind v split-window -h -c "#{pane_current_path}"
+bind s split-window -v -c "#{pane_current_path}"
 
 # hjkl pane traversal
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
+
+# Bind new window on current directory
+bind c new-window -c "#{pane_current_path}"
 
 # swap window to the beginning
 bind L swap-window -t +1

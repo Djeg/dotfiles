@@ -158,7 +158,7 @@ if &t_Co > 255
    hi DiffAdd                     ctermbg=24
    hi DiffChange      ctermfg=181 ctermbg=239
    hi DiffDelete      ctermfg=162 ctermbg=53
-   hi DiffText                    ctermbg=102 cterm=bold,italic
+   hi DiffText                    ctermbg=102 cterm=bold
 
    hi Directory       ctermfg=118               cterm=bold
    hi Error           ctermfg=219 ctermbg=89
@@ -174,8 +174,8 @@ if &t_Co > 255
 
    hi keyword         ctermfg=161               cterm=bold
    hi Label           ctermfg=229               cterm=none
-   hi Macro           ctermfg=193               cterm=italic
-   hi SpecialKey      ctermfg=81                cterm=italic
+   hi Macro           ctermfg=193
+   hi SpecialKey      ctermfg=81
 
    hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
    hi ModeMsg         ctermfg=229
@@ -198,7 +198,7 @@ if &t_Co > 255
    hi SignColumn      ctermfg=118 ctermbg=234
    hi SpecialChar     ctermfg=161               cterm=bold
    hi SpecialComment  ctermfg=245               cterm=bold
-   hi Special         ctermfg=81                cterm=italic
+   hi Special         ctermfg=81
    if has("spell")
        hi SpellBad                ctermbg=52
        hi SpellCap                ctermbg=17
@@ -208,8 +208,8 @@ if &t_Co > 255
    hi Statement       ctermfg=161               cterm=bold
    hi StatusLine      ctermfg=233 ctermbg=253
    hi StatusLineNC    ctermfg=244 ctermbg=232
-   hi StorageClass    ctermfg=208               cterm=italic
-   hi Structure       ctermfg=81                cterm=italic
+   hi StorageClass    ctermfg=208
+   hi Structure       ctermfg=81
    hi Tag             ctermfg=161
    hi Title           ctermfg=166
    hi Todo            ctermfg=231 ctermbg=232   cterm=bold
