@@ -220,6 +220,9 @@ Bundle 'bcicen/vim-vice'
 Bundle 'nathanaelkane/vim-indent-guides.git'
 Bundle 'LucHermitte/lh-vim-lib'
 Bundle 'LucHermitte/local_vimrc'
+Bundle 'vim-syntastic/syntastic.git'
+Bundle 'Shougo/vimproc.vim.git'
+Bundle 'Quramy/tsuquyomi.git'
 
 filetype plugin indent on
 
@@ -265,6 +268,7 @@ nnoremap <silent> <C-b> :CtrlPBuffer<CR>
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v([\/]\.(git|hg|svn))|([\/]vendor)|([\/]node_modules)|([\/]compiled)|([\/]dist)|([\/]app/lib)|([\/]bower_components)|([\/]doc)|([\/]jspm_packages)$',
+  \ 'file': '\v\.(exe|png|jpeg|jpg|ico|svg)',
   \ }
 
 "
@@ -378,6 +382,19 @@ imap <silent> <Leader>z <Esc>h :call emmet#expandAbbr(3,"")<CR>i
 "
 let g:jsdoc_default_mapping = 0
 nmap <silent> <Leader><C-j> :call jsdoc#insert()<CR>
+
+"
+" Syntastic options
+"
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_disabled_filetypes=['less']
 
 " ctrlp configuration
 let g:ctrlp_working_path_mode = 0

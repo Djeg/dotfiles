@@ -17,3 +17,9 @@ node_modules/
 packages/
 typings/
 jspm_packages/
+*.png
+*.jpeg
+*.jpg
+*.ico
+*.mov
+*.mp3
