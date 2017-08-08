@@ -80,7 +80,7 @@ alias gpu="git push"
 alias gpl="git pull"
 alias gru="grep -nri --color"
 alias gpr="hub pull-request -b "
-alias composer="php ~/.bin/composer"
+alias gtag="git tag -a"
 alias nw="~/.nw/nw ."
 alias spec="phpspec run -fpretty"
 
@@ -96,6 +96,4 @@ export TERM=screen-256color-bce
 export PROJECT_FOLDER="/home/djeg/Project"
 export SSH_FOLDER="/home/djeg/.ssh"
 
-# configure tmuxinator
-source ~/.bin/tmuxinator.zsh
-source ~/.balinea.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

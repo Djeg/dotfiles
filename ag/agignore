@@ -17,6 +17,7 @@ node_modules/
 packages/
 typings/
 jspm_packages/
+dist/
 *.png
 *.jpeg
 *.jpg

@@ -223,6 +223,7 @@ Bundle 'LucHermitte/local_vimrc'
 Bundle 'vim-syntastic/syntastic.git'
 Bundle 'Shougo/vimproc.vim.git'
 Bundle 'Quramy/tsuquyomi.git'
+Bundle 'leafgarland/typescript-vim.git'
 
 filetype plugin indent on
 
@@ -306,9 +307,6 @@ vmap <Leader>= :Tabularize /=<CR>
 vnoremap <Leader>> :Tabularize /=><CR>
 vnoremap <Leader>$ :Tabularize /\$/l1r0<CR>
 vnoremap <Leader>\| :Tabularize /\|<CR>
-nnoremap <Leader>t :!ctags -R<CR>
-nnoremap <Leader><C-t> :!ctags -R --PHP-kinds=+cf -h ".js"<CR>
-nnoremap <Leader>tt :!ctags -R -h "*.ts"<CR>
 nnoremap <Leader>v :source ~/.vimrc<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
@@ -373,9 +371,24 @@ noremap <Leader>fA zR
 noremap <Leader>fC zM
 noremap <Leader>ff zA
 
+" Escape signal
+inoremap qq <esc>
+vnoremap qq <esc>
+
 " ZEN coding shortcuts ;)
 nmap <silent> <Leader>z :call emmet#expandAbbr(3,"")<CR>i
 imap <silent> <Leader>z <Esc>h :call emmet#expandAbbr(3,"")<CR>i
+
+" Typescript configuration
+autocmd FileType typescript call s:typescript_filetype_settings()
+function! s:typescript_filetype_settings()
+    set makeprg=tsc
+endfunction
+
+noremap <Leader>ts :silent make<cr>
+autocmd QuickFixCmdPost [^l]* cwindow
+autocmd QuickFixCmdPost l*    cwindow
+autocmd VimEnter        *     cwindow
 
 "
 " Jsdoc mapping
@@ -398,7 +411,7 @@ let g:syntastic_disabled_filetypes=['less']
 
 " ctrlp configuration
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_match_window = 'top,order:ttb,min:1,max:8,results:8'
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:8,results:8'
 
 
 " vim-symfony configuration

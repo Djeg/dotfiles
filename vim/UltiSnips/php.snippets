@@ -164,7 +164,7 @@ endsnippet
 snippet fun "A simple function snippet" !b
 ${1:public} function ${2:name}(${3:\$value})
 {
-    ${0://some code here ...}
+    $0
 }
 endsnippet
 
@@ -174,14 +174,14 @@ snippet fund "A simple function snippet with doc" !b
  */
 ${1:public} function ${2:name}(${3:\$value})
 {
-    ${0://some code here ...}
+    $0
 }
 endsnippet
 
 snippet func "A simple function" !b
 function ${2:name}(${3:\$args})
 {
-    ${0://some code ...}
+    $0
 }
 endsnippet
 
@@ -198,7 +198,7 @@ snippet funcd "A simple function with doc" !b
  */
 function ${2:name}(${3:\$args})
 {
-    ${0://some code ...}
+    $0
 }
 endsnippet
 
@@ -226,6 +226,10 @@ endsnippet
 
 snippet at "Display an attribute" !b
 ${1:private} \$${2:value};$0
+endsnippet
+
+snippet pat "Display a public attribute" !b
+public \$${1:value};$0
 endsnippet
 
 snippet atd "Display an attribute with doc" !b
