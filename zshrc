@@ -83,6 +83,20 @@ alias gpr="hub pull-request -b "
 alias gtag="git tag -a"
 alias nw="~/.nw/nw ."
 alias spec="phpspec run -fpretty"
+alias drun="docker run -it --rm"
+alias drm="docker rm"
+alias drmi="docker rmi"
+alias dce="docker-compose exec"
+alias dcps="docker-compose ps"
+alias dcb="docker-compose build"
+alias dex="docker exec -it"
+alias dps="docker ps"
+alias dim="docker images"
+alias dcup="docker-compose up"
+alias sme="source ~/.zshrc"
+alias vim=nvim
+alias vi=nvim
+alias gpom="git pull origin master"
 
 bindkey -v
 bindkey ^R history-incremental-search-backward
@@ -90,7 +104,7 @@ bindkey ^R history-incremental-search-backward
 export GOPATH="$HOME/.go"
 export GOBIN="$HOME/.go/bin"
 export GOROOT="/usr/lib/go"
-export PATH="bin:vendor/bin:node_modules/.bin:$PATH:$HOME/.rvm/bin:$HOME/.composer/vendor/bin:$GOPATH/bin:$HOME/.bin" # Add RVM to PATH for scripting
+export PATH="bin:vendor/bin:node_modules/.bin:/home/djeg/.gem/ruby/2.4.0/bin:$HOME/.bin:$HOME/.node_modules/bin:$PATH:$HOME/.rvm/bin:$HOME/.composer/vendor/bin:$HOME/.config/composer/vendor/bin:$GOPATH/bin" # Add RVM to PATH for scripting
 export EDITOR='vim'
 export TERM=screen-256color-bce
 export PROJECT_FOLDER="/home/djeg/Project"

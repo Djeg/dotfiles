@@ -1,5 +1,6 @@
-set-option -g default-terminal screen-256color
+set-option -g default-terminal screen-256color-bce
 set-option -g default-shell /bin/zsh
+set-option -sg escape-time 10
 
 # rebind default keys
 set -g prefix M-a
@@ -37,16 +38,24 @@ set -g status-fg colour250
 set -g status-bg colour233
 
 # left side of status bar
- set -g status-left-length 20
- set -g status-left '#[fg=colour22,bg=colour184,bold] #W #[fg=colour184,bg=colour236,bold]⮀#[fg=colour250,bold] #I #[fg=colour236,bg=colour233,bold]⮀#[fg=colour235,bold] #{session_windows}'
+set -g status-left-length 20
+set -g status-left "#[fg=colour16,bg=colour254,bold] #S #[fg=colour254,bg=colour233,nobold,nounderscore,noitalics]"
 
 # empty right status
 set -g status-right-length 0
 
 # status bar options
 set-option -g status-justify left         # alignment of windows
-set -g window-status-format ''        # Inactive windows in status bar
-set -g window-status-current-format ''
+setw -g window-status-fg "colour250"
+setw -g window-status-attr "none"
+setw -g window-status-activity-bg "colour233"
+setw -g window-status-activity-attr "none"
+setw -g window-status-activity-fg "colour250"
+setw -g window-status-separator ""
+setw -g window-status-bg "colour233"
+setw -g window-status-format "#[fg=colour244,bg=colour233] #I #[fg=colour250,bg=colour233] #W "
+setw -g window-status-current-format "#[fg=colour233,bg=colour31,nobold,nounderscore,noitalics]#[fg=colour117,bg=colour31] #I #[fg=colour231,bg=colour31,bold] #W #[fg=colour31,bg=colour233,nobold,nounderscore,noitalics]"
+
 
 # message bar
 set -g message-fg colour250

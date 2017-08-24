@@ -7,6 +7,7 @@
 [color "status"]
     changed=yellow
 [core]
+    editor = nvim
     excludesfile = ~/.gitignore
 [alias]
     st = status
@@ -20,7 +21,7 @@
     aci = !git add -A && git commit -m
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s%Cgreen(%cr) %C(bold blue)<%an>%Creset'--abbrev-commit --date=relative
 [merge]
-    tool = vimdiff
+    tool = nvim -d
 [url "git@github.com:"]
     insteadOf = gh:
 [push]
