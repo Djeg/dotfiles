@@ -8,3 +8,4 @@ test.*
 .tagsgen.json
 _vimrc_local.vim
 .agignore
+*debug.log

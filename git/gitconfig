@@ -21,7 +21,9 @@
     aci = !git add -A && git commit -m
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s%Cgreen(%cr) %C(bold blue)<%an>%Creset'--abbrev-commit --date=relative
 [merge]
-    tool = nvim -d
+    tool = vimdiff
+[mergetool "vimdiff"]
+    path = nvim
 [url "git@github.com:"]
     insteadOf = gh:
 [push]

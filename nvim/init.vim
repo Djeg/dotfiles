@@ -1,9 +1,5 @@
 let mapleader=","
 
-" Python support
-let g:python_host_prog = '/home/djeg/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/home/djeg/.pyenv/versions/neovim3/bin/python'
-
 " NEOVUNDLE
 if has('vim_starting')
   set runtimepath+=/home/djeg/.config/nvim/bundle/neobundle.vim/
@@ -15,7 +11,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'autozimu/LanguageClient-neovim' " Language Server Protocol support for neovim
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/vimproc.vim' " asynchronous execution library
 NeoBundle 'leafgarland/typescript-vim' " Typescript suport
 NeoBundle 'scrooloose/nerdtree' " NERD Tree
@@ -25,6 +21,8 @@ NeoBundle 'UltiSnips' " Snippets
 NeoBundle 'godlygeek/tabular.git' "Tabular code portion
 NeoBundle 'sjbach/lusty.git'
 NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+NeoBundle 'arnaud-lb/vim-php-namespace'
+NeoBundle 'elmcast/elm-vim'
 
 call neobundle#end()
 
@@ -94,17 +92,6 @@ au FileType javascript set tags=js-lib.tags,js-src.tags,js-modules.tags
 au FileType typescript set tags=ts-lib.tags,ts-typings.tags,ts-modules.tags,ts-src.tags
 au FileType python set tags=python.tags
 
-" Language Cient Configuration
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {
-    \ 'php': ['php', '~/.bin/php-language-server'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ }
-let g:LanguageClient_selectionUI = 'fzf'
-
-set omnifunc=LanguageClient#complete
-
 " Ctrlp Configuration
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -144,7 +131,6 @@ vmap <C-l> w
 vmap <C-h> b
 vmap <C-j> 4j
 vmap <C-k> 4k
-
 nmap <Leader>a gg<S-v><S-g><CR>
 vmap <Leader>y "+y<CR>
 nmap <leader>p "+p<CR>
@@ -165,12 +151,13 @@ vmap <Leader>> :Tabularize /=><CR>
 vmap <Leader>$ :Tabularize /\$/l1r0<CR>
 vmap <Leader>\| :Tabularize /\|<CR>
 nmap <Leader>a gg<S-v><S-g><CR>
-nmap <Leader>if :call LanguageClient_textDocument_hover()<cr>
-nmap <Leader>j :call LanguageClient_textDocument_definition()<cr>
-nmap <Leader>rn :call LanguageClient_textDocument_rename()<cr>
-nmap <Leader>sy :call LanguageClient_textDocument_documentSymbol()<cr>
-nmap <Leader>ts :call LanguageClient_workspace_symbol()<cr>
+nmap <silent> <Leader>j "zyiw:exe ":tj ".@z.""<CR>
+nmap <silent> <Leader>J "zyiw:exe ":ptj ".@z.""<CR>
 nmap <Leader>v :source /home/djeg/.config/nvim/init.vim<cr>
+imap <Leader>u <C-O>:call PhpInsertUse()<CR>
+nmap <Leader>u :call PhpInsertUse()<CR>
+imap <Leader>e <C-O>:call PhpExpandClass()<CR>
+nmap <Leader>e :call PhpExpandClass()<CR>
 
 " Create a directory when not exists
 au BufWrite * :call <SID>MkdirsIfNotExists(expand('<afile>:h'))

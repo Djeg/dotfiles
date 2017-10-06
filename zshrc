@@ -86,6 +86,7 @@ alias spec="phpspec run -fpretty"
 alias drun="docker run -it --rm"
 alias drm="docker rm"
 alias drmi="docker rmi"
+alias dc="docker-compose"
 alias dce="docker-compose exec"
 alias dcps="docker-compose ps"
 alias dcb="docker-compose build"
@@ -93,6 +94,7 @@ alias dex="docker exec -it"
 alias dps="docker ps"
 alias dim="docker images"
 alias dcup="docker-compose up"
+alias dcl="docker-compose logs --tail=10 -f"
 alias sme="source ~/.zshrc"
 alias vim=nvim
 alias vi=nvim
@@ -109,5 +111,6 @@ export EDITOR='vim'
 export TERM=screen-256color-bce
 export PROJECT_FOLDER="/home/djeg/Project"
 export SSH_FOLDER="/home/djeg/.ssh"
+export NPM_CONFIG_PREFIX="$HOME/.node_modules"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
