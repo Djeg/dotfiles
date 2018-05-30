@@ -87,6 +87,8 @@ echo ". zsh"
 echo ". tmux"
 echo ". sylversearcher"
 echo ". google-chrome"
+echo ". albert"
+echo ". deepin-terminal"
 echo "..."
 echo "Bye °-O"
 
