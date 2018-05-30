@@ -167,20 +167,20 @@ if &t_Co > 255
    hi Float           ctermfg=135
    hi FoldColumn      ctermfg=67  ctermbg=16
    hi Folded          ctermfg=67  ctermbg=16
-   hi Function        ctermfg=118
-   hi Identifier      ctermfg=208               cterm=none
+   hi Function        ctermfg=112
+   hi Identifier      ctermfg=172               cterm=none
    hi Ignore          ctermfg=244 ctermbg=232
    hi IncSearch       ctermfg=193 ctermbg=16
 
-   hi keyword         ctermfg=161               cterm=bold
-   hi Label           ctermfg=229               cterm=none
-   hi Macro           ctermfg=193
+   hi keyword         ctermfg=125               cterm=bold
+   hi Label           ctermfg=193               cterm=none
+   hi Macro           ctermfg=192
    hi SpecialKey      ctermfg=81
 
    hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
-   hi ModeMsg         ctermfg=229
-   hi MoreMsg         ctermfg=229
-   hi Operator        ctermfg=161
+   hi ModeMsg         ctermfg=193
+   hi MoreMsg         ctermfg=193
+   hi Operator        ctermfg=125
 
    " complete menu
    hi Pmenu           ctermfg=81  ctermbg=16

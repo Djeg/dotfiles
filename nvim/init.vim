@@ -8,8 +8,9 @@ endif
 call neobundle#begin(expand('/home/djeg/.config/nvim/bundle'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
-
+NeoBundle 'rakr/vim-one'
 NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/vimproc.vim' " asynchronous execution library
@@ -22,7 +23,11 @@ NeoBundle 'godlygeek/tabular.git' "Tabular code portion
 NeoBundle 'sjbach/lusty.git'
 NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 NeoBundle 'arnaud-lb/vim-php-namespace'
+NeoBundle 'qpkorr/vim-bufkill'
 NeoBundle 'elmcast/elm-vim'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'reasonml-editor/vim-reason-plus'
+NeoBundle 'editorconfig/editorconfig-vim'
 
 call neobundle#end()
 
@@ -46,13 +51,12 @@ set history=1000                 " Configure the history max memory
 set nobackup                     " Do not backup files
 set directory=~/.tmp             " Directory to put swap files
 set cursorline                   " Highlight the cursor line
-set cursorcolumn                 " Highlight the cursor column
 set fillchars=""
 set expandtab                    " Converts tabs to spaces
 set autoindent                   " Automatically copy indentation from previous line
 set smartindent                  " indents one extra level according to the current syntax
-set tabstop=4                    " Indentation size
-set shiftwidth=4                 " Indentation size for spaces tabulation
+set tabstop=2                    " Indentation size
+set shiftwidth=2                 " Indentation size for spaces tabulation
 set list
 set listchars=trail:‧,tab:▹∙,nbsp:ⅹ
 set ls=2                         " Always shos the status line
@@ -60,7 +64,7 @@ set ruler                        " Show the cursor position
 set notitle                      " Don't show title in the console title bar
 set novisualbell                 " Don't use the visual bell
 set showmatch                    " Show matching ()[]{}
-set number                       " Show line number
+set nonumber                       " Show line number
 set clipboard+=unnamedplus       " Allow copy/past from graĥic clipboard
 set incsearch                    " Incremental search
 set hlsearch                     " Highlight the search
@@ -79,12 +83,13 @@ set nowrap
 colorscheme molokai
 set t_Co=256
 hi Normal          guifg=#F8F8F2 guibg=#1C1C1C
-hi Normal ctermbg=none
+hi Normal ctermbg=234
 let &colorcolumn="80,".join(range(120,999),",")
 highlight ColorColumn ctermbg=232 guibg=#2c2d27
-highlight CursorColumn ctermbg=232 guibg=#2c2d27
-highlight CursorLine ctermbg=232 guibg=#2c2d27
-highlight LineNr ctermbg=232 guibg=#2c2d27
+highlight CursorColumn ctermbg=234 guibg=#2c2d27
+highlight CursorLine ctermbg=233 guibg=#2c2d27
+highlight LineNr ctermbg=234 guibg=#2c2d27
+highlight Visual ctermbg=238
 
 " Tag Configuration
 au FileType php set tags=php-src.tags,php-vendor.tags
@@ -114,15 +119,19 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " Airline configuration
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#tabline#fnamemod=':t'
 let g:airline#extensions#tabline#fnamecollapse=0
 let g:airline_section_c='%t'
-let g:airline_left_sep = '⮀'
-let g:airline_right_sep = ''
+let g:airline_section_y=''
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_theme='jellybeans'
 
 " Mapping
+nmap <Leader>en :set number<CR>
+nmap <Leader>dn :set nonumber<CR>
 nmap <C-l> w
 nmap <C-h> b
 nmap <C-j> 4j
@@ -138,12 +147,13 @@ nmap <Leader><C-c> :!rm -rf ~/.vim/tmp/*<CR>
 nmap <Leader>b <Leader>lb
 nmap <Leader>ll :bn<CR>
 nmap <Leader>hh :bp<CR>
-nmap <Leader>q :bd<CR>
+nmap <Leader>q :BD<CR>
 nmap <Leader>f <Leader>lr
 nmap <leader>r :redraw!<cr>
 nmap <silent> <leader>/ :let @/=""<cr>
 nmap <leader>x :NERDTreeToggle<CR>
 nmap <Leader>nf :NERDTreeFind<CR>
+map <Leader>eg :GitGutterToggle<CR>
 vmap <Leader>: :Tabularize /:<CR>
 vmap <Leader>/ :Tabularize /:\zs<CR>
 vmap <Leader>= :Tabularize /=<CR>
@@ -175,6 +185,11 @@ au BufNewFile,BufRead *.dart set ft=dart
 au BufNewFile,BufRead *md set ft=markdown
 au BufNewFile,BufRead *.ts set ft=typescript
 au BufNewFile,BufRead *.tsx set ft=typescript
+au BufNewFile,BufRead *.coffee set filetype=coffee
+au BufNewFile,BufRead *.reason set filetype=reason
+au BufNewFile,BufRead *.mjs set filetype=typescript
+au BufNewFile,BufRead *.js set filetype=typescript
+au BufNewFile,BufRead *.jsx set filetype=typescript
 
 " Strip trailing whitespace
 function! StripTrailingWhitespace()

@@ -1,1 +1,0 @@
-/home/djeg/.dotfiles/vim/colors/molokai.vim

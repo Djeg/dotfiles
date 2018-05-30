@@ -1,35 +1,35 @@
 # IMPORT
 snippet ii "import" !b
-import '$1';$0
+import '$1'$0
 endsnippet
 
 snippet ip "Import from" !b
-import { $1 } from '$2';$0
+import { $1 } from '$2'$0
 endsnippet
 
 snippet id "Import default from" !b
-import $1 from '$2';$0
+import $1 from '$2'$0
 endsnippet
 
 snippet ia "Import all from" !b
-import * as $1 from '$2';$0
+import * as $1 from '$2'$0
 endsnippet
 
 # EXPORT
 snippet req "Require a nodejs module" !b
-var $1 = require('$2');
+var $1 = require('$2')
 endsnippet
 
 snippet exp "Export nodejs module" !b
-module.exports = $1;
+module.exports = $1
 endsnippet
 
 snippet ex "export something (ES6)" !b
-export {$1};
+export {$1}
 endsnippet
 
 snippet exd "export default (ES6)" !b
-export default $1;
+export default $1
 endsnippet
 
 # FUNCTION
@@ -153,20 +153,20 @@ endsnippet
 
 # DEBUG
 snippet cl "console log" !b
-console.log($1);$0
+console.log($1)$0
 endsnippet
 
 snippet cle "console error" !b
-console.error($1);$0
+console.error($1)$0
 endsnippet
 
 snippet db "debugger" !b
-debugger;
+debugger
 endsnippet
 
 snippet cld "console log and debugger" !b
-console.log($1);
-debugger;$0
+console.log($1)
+debugger$0
 endsnippet
 
 # STATEMENT
@@ -222,19 +222,25 @@ endsnippet
 snippet desc "Describe" !b
 describe('$1', () => {
 	$0
-});
+})
 endsnippet
 
 snippet adesc "Asynchronous describe" !b
 describe('$1', async (next) => {
 	$0
-});
+})
 endsnippet
 
 snippet it "It" !b
 it('$1', () => {
 	$0
 });
+endsnippet
+
+snippet fit "Functional it" !b
+it('$1', pipe(
+	done,
+))
 endsnippet
 
 snippet ait "async it" !b
@@ -253,4 +259,20 @@ snippet abefo "async before each" !b
 beforeEach(acyns (next) => {
 	$0
 });
+endsnippet
+
+snippet fcf "functional fnuction" !b
+export const ${1:name} = (${2:args}) =>
+	$O
+endsnippet
+
+snippet eit "Export interface" !b
+export interface ${1:Name}
+{
+	$0
+}
+endsnippet
+
+snippet im "Interface member" !b
+${1:name}: ${2:string};$0
 endsnippet
