@@ -71,6 +71,9 @@ ln -s $dir/font $font
 # Install wallpappers
 ln -s $dir/wallpapper $wallpappers
 
+# Install ctags configuration
+ln -s $dir/ctags $HOME/.ctags
+
 # Install yaourt
 sudo pacman -S yaourt
 
