@@ -64,7 +64,7 @@ set ruler                        " Show the cursor position
 set notitle                      " Don't show title in the console title bar
 set novisualbell                 " Don't use the visual bell
 set showmatch                    " Show matching ()[]{}
-set nonumber                       " Show line number
+set number                       " Show line number
 set clipboard+=unnamedplus       " Allow copy/past from graĥic clipboard
 set incsearch                    " Incremental search
 set hlsearch                     " Highlight the search

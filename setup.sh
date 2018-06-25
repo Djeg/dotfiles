@@ -14,7 +14,7 @@ Processing ...
 "
 
 # Setup directories
-dir=`dirname $0`
+dir=`pwd`
 config="$dir/.config"
 nvimConfig="$dir/.config/nvim"
 localDir="$HOME/.local"
@@ -22,6 +22,12 @@ localShare="$HOME/.local/share"
 font="$HOME/.local/share/fonts"
 pictures="$HOME/Pictures"
 wallpappers="$HOME/Pictures/Wallpappers"
+
+echo "$config"
+echo "$nvimConfig"
+echo "$localDir"
+
+echo $HOME
 
 if [ ! -d "$localDir" ]; then
   mkdir $localDir
