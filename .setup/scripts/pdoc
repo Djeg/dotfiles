@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+lynx -accept_all_cookies http://php.net/$1

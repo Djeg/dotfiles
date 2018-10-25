@@ -1,0 +1,74 @@
+{
+    "php-src": {
+        "path": "src",
+        "extension": "php",
+        "file": "php-src.tags",
+        "args": [
+            "--languages=PHP"
+        ]
+    },
+    "php-vendor": {
+        "path": "vendor",
+        "extension": "php",
+        "file": "php-vendor.tags",
+        "args": [
+            "--languages=PHP"
+        ]
+    },
+    "js-lib": {
+        "path": "lib",
+        "extension": "js",
+        "file": "js-lib.tags",
+        "args": [
+            "--languages=js"
+        ]
+    },
+    "js-src": {
+        "path": "src",
+        "extension": "js",
+        "file": "js-src.tags",
+        "args": [
+            "--languages=js"
+        ]
+    },
+    "js-modules": {
+        "path": "node_modules",
+        "extension": "js",
+        "file": "js-modules.tags",
+        "args": [
+            "--languages=js"
+        ]
+    },
+    "ts-lib": {
+        "path": "lib",
+        "extension": "ts",
+        "file": "ts-lib.tags",
+        "args": [
+            "--languages=ts"
+        ]
+    },
+    "ts-src": {
+        "path": "src",
+        "extension": "ts",
+        "file": "ts-src.tags",
+        "args": [
+            "--languages=ts"
+        ]
+    },
+    "ts-typings": {
+        "path": "typings",
+        "extension": "ts",
+        "file": "ts-typings.tags",
+        "args": [
+            "--languages=ts"
+        ]
+    },
+    "ts-modules": {
+        "path": "node_modules",
+        "extension": "ts",
+        "file": "ts-modules.tags",
+        "args": [
+            "--languages=ts"
+        ]
+    }
+}

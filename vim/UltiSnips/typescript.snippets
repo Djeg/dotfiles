@@ -1,0 +1,330 @@
+# IMPORT
+snippet ii "import" !b
+import '$1'$0
+endsnippet
+
+snippet ip "Import from" !b
+import { $1 } from '$2'$0
+endsnippet
+
+snippet id "Import default from" !b
+import $1 from '$2'$0
+endsnippet
+
+snippet ia "Import all from" !b
+import * as $1 from '$2'$0
+endsnippet
+
+# EXPORT
+snippet req "Require a nodejs module" !b
+var $1 = require('$2')
+endsnippet
+
+snippet exp "Export nodejs module" !b
+module.exports = $1
+endsnippet
+
+snippet ex "export something (ES6)" !b
+export {$1}
+endsnippet
+
+snippet exd "export default (ES6)" !b
+export default $1
+endsnippet
+
+snippet ec "Export const (with signature)" !b
+// $1 :: $2
+export const $1 = $0
+endsnippet
+
+snippet ed "Export default (with signature)" !b
+// $1 :: $2
+export default $0
+endsnippet
+
+snippet c "Export const (with signature)" !b
+// $1 :: $2
+const $1 = $0
+endsnippet
+
+snippet ec2 "Uncurry 2" !b
+// $1 :: $2 -> $3 -> $4
+export const $1 = ${5:R.}uncurryN(2, $0)
+endsnippet
+
+snippet c2 "Uncurry 2" !b
+// $1 :: $2 -> $3 -> $4
+const $1 = ${5:R.}uncurryN(2, $0)
+endsnippet
+
+snippet ec3 "Uncurry 3" !b
+// $1 :: $2 -> $3 -> $4 -> $5
+export const $1 = ${6:R.}uncurryN(3, $0)
+endsnippet
+
+snippet c3 "Uncurry 3" !b
+// $1 :: $2 -> $3 -> $4 -> $5
+const $1 = ${6:R.}uncurryN(3, $0)
+endsnippet
+
+snippet ec4 "Uncurry 4" !b
+// $1 :: $2 -> $3 -> $4 -> $5 -> $6
+export const $1 = ${7:R.}uncurryN(4, $0)
+endsnippet
+
+snippet c4 "Uncurry 4" !b
+// $1 :: $2 -> $3 -> $4 -> $5 -> $6
+const $1 = ${7:R.}uncurryN(4, $0)
+endsnippet
+
+# FUNCTION
+snippet fu "function" !b
+function $1($2) {
+	$0
+}
+endsnippet
+
+snippet afu "async function" !b
+async function $1($2) {
+	$0
+}
+endsnippet
+
+snippet efu "export function" !b
+export$3 function $1($2) {
+	$0
+}
+endsnippet
+
+snippet eafu "Export async functions" !b
+export$3 async function $1($2) {
+	$0
+}
+endsnippet
+
+snippet gfu "generator function" !b
+function* $1($2) {
+	$0
+}
+endsnippet
+
+snippet agfu "async generator function" !b
+async function* $1($2)
+endsnippet
+
+snippet egfu "export generator function" !b
+export$3 function* $1($2) {
+	$0
+}
+endsnippet
+
+snippet eagfu "export async generator function" !b
+export$3 async function* $1($2) {
+	$0
+}
+endsnippet
+
+snippet ftp "function type docblock" !b
+/**
+ * @type ${1:name} :: ${2:Type}
+ */
+const $1 = $0
+endsnippet
+
+# CLASS
+snippet cl "class" !b
+class $1
+{
+	$0
+}
+endsnippet
+
+snippet ecl "export class" !b
+export class $1
+{
+	$0
+}
+endsnippet
+
+snippet edcl "export default class" !b
+export default class $1
+{
+	$0
+}
+
+endsnippet
+
+snippet cons "constructor" !b
+constructor($1)
+{
+	$0
+}
+endsnippet
+
+snippet fm "class method" !b
+$1($2)
+{
+	$0
+}
+endsnippet
+
+snippet afm "async class method" !b
+async $1($2)
+{
+	$0
+}
+endsnippet
+
+snippet gfm "generator class method" !b
+$1*($2)
+{
+	$0
+}
+endsnippet
+
+snippet agfm "async generator class method" !b
+async $1*($2)
+{
+	$0
+}
+endsnippet
+
+snippet int "interface" !b
+interface $1
+{
+	$0
+}
+endsnippet
+
+snippet eint "export interface" !b
+export interface $1
+{
+	$0
+}
+endsnippet
+
+# DEBUG
+snippet cl "console log" !b
+console.log($1)$0
+endsnippet
+
+snippet cle "console error" !b
+console.error($1)$0
+endsnippet
+
+snippet db "debugger" !b
+debugger
+endsnippet
+
+snippet cld "console log and debugger" !b
+console.log($1)
+debugger$0
+endsnippet
+
+# STATEMENT
+snippet fr "for" !b
+for (let $1 = 0; $1 < $2; $1++) {
+	$0
+}
+endsnippet
+
+snippet fo "for..of" !b
+for (let $1 of $2) {
+	$0
+}
+endsnippet
+
+snippet fi "for..in" !b
+for (let $1 in $2) {
+	$0
+}
+endsnippet
+
+snippet fkv "for[key,value]..of" !b
+for (let [$1, $2] of $3) {
+	$0
+}
+endsnippet
+
+snippet fa "for await" !b
+for await (let $1 of $2) {
+	$0
+}
+endsnippet
+
+snippet if "if" !b
+if ($1) {
+	$0
+}
+endsnippet
+
+snippet sw "switch" !b
+switch ($1) {
+	$0
+}
+endsnippet
+
+snippet wh "while" !b
+while ($1) {
+	$0
+}
+endsnippet
+
+#JASMINE
+snippet desc "Describe" !b
+describe('$1', () => {
+	$0
+})
+endsnippet
+
+snippet adesc "Asynchronous describe" !b
+describe('$1', async (next) => {
+	$0
+})
+endsnippet
+
+snippet it "It" !b
+it('$1', () => {
+	$0
+});
+endsnippet
+
+snippet fit "Functional it" !b
+it('$1', pipe(
+	done,
+))
+endsnippet
+
+snippet ait "async it" !b
+it('$1', async (next) => {
+	$0
+});
+endsnippet
+
+snippet befo "before each" !b
+beforeEach(() => {
+	$0
+});
+endsnippet
+
+snippet abefo "async before each" !b
+beforeEach(acyns (next) => {
+	$0
+});
+endsnippet
+
+snippet fcf "functional fnuction" !b
+export const ${1:name} = (${2:args}) =>
+	$O
+endsnippet
+
+snippet eit "Export interface" !b
+export interface ${1:Name}
+{
+	$0
+}
+endsnippet
+
+snippet im "Interface member" !b
+${1:name}: ${2:string};$0
+endsnippet

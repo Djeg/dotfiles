@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "Please enter the project name and press [ENTER]:"
+read dir
+echo "Please enter the vhost suffix and press [ENTER]"
+read suffix
+user=`whoami`
+vhostname="$dir.$suffix"
+
+echo "Creating host ..."
+
+vhost=`sed "s/{USER}/$user/g;s/{VHOST}/$vhostname/g;s/{PROJECT}/$dir/g" ~/.dotfiles/apache2/vhost`
+
+echo "$vhost" >> /etc/apache2/sites-enabled/000-default.conf
+echo "127.0.0.1   $vhostname" >> /etc/hosts
+service apache2 restart
+echo "😄  done"

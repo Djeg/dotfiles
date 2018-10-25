@@ -1,0 +1,13 @@
+name: sf2
+root: .
+
+windows:
+  - editor: vim
+  - shell:
+      layout: 406f,145x38,0,0{102x38,0,0,1,42x38,103,0[42x29,103,0,2,42x2,103,30,5,42x2,103,33,3,42x2,103,36,4]}
+      panes:
+        - clear
+        - clear
+        - tagsgen .
+        - clear
+        - php -S localhost:8000 -t web/

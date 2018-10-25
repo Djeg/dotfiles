@@ -1,0 +1,571 @@
+global !p
+
+def namespace(snip, path):
+	import os
+	namespace = pathToNamespace(path)
+	if (len(namespace) == 0):
+		return ''
+	return os.linesep + snip.mkline('namespace ' + namespace + ';') + os.linesep
+
+def specNamespace(snip, path):
+    import os
+    namespace = ns(snip, path)
+    if (len(namespace) == 0):
+        return ''
+    return os.linesep + snip.mkline('namespace '+namespace+';') + os.linesep
+
+def bundleSpecNamespace(snip, path):
+    import os
+    namespace = 'spec\\'+bdNs(snip, path)
+    if (len(namespace) == 0):
+        return ''
+    return os.linesep + snip.mkline('namespace '+namespace+';') + os.linesep
+
+def ns(snip, path):
+    import os
+    namespace = pathToNamespace(path)
+    exp = namespace.split('\\')
+    namespace = '\\'.join(exp[1:])
+    if (len(namespace) == 0):
+        return ''
+    return namespace
+
+def bdNs(snip, path):
+    import os
+    namespace = pathToNamespace(path)
+    exp = namespace.split('\\')
+    namespace = ''
+    find = False
+    for ns in exp:
+        if ns == "spec" and not find:
+            find = True
+        elif find:
+            namespace += ns+'\\'
+    if namespace[-1] == '\\':
+        namespace = namespace[:-1]
+    if (len(namespace) == 0):
+        return ''
+    return namespace
+
+def pathToNamespace(path):
+    import re
+    path = path if path[0:2] != './' else path[2:]
+    path = path.replace('/', '\\')
+    path = re.sub(r'\b[^\\]*\Z', '', path)
+    path = path.strip('\\')
+    return re.sub(r'\A(\b[^A-Z][^\\]*\\)*', '', path)
+
+endglobal
+
+snippet i "Simple if insrtuction" !b
+if ($1) {
+    $0
+}
+endsnippet
+
+snippet ie "Simple if else instruction" !b
+if ($1) {
+    $0
+} else ($2) {
+
+}
+endsnippet
+
+snippet f "Simple for instruction" !b
+for (\$i = 0; \$i < $1; \$i++) {
+    $0
+}
+endsnippet
+
+snippet fe "Simple foreach instruction" !b
+foreach ($1 as $2) {
+    $0
+}
+endsnippet
+
+snippet cl "Display a class" !b
+<?php
+`!p snip.rv = namespace(snip, path)`
+class `!p snip.rv = snip.basename` $1
+{
+    ${0://implementation ...}
+}
+endsnippet
+
+snippet cld "Display a class with doc" !b
+<?php
+`!p snip.rv = namespace(snip, path)`
+/**
+ * ${2:Class doc ..}
+ *
+ * @author David Jegat <david.jegat@gmail.com>
+ */
+class `!p snip.rv = snip.basename` $1
+{
+    ${0://implementation ...}
+}
+endsnippet
+
+snippet acl "Display abstract class" !b
+<?php
+`!p snip.rv = namespace(snip, path)`
+abstract class `!p snip.rv = snip.basename` $1
+{
+    ${0://implementation ...}
+}
+endsnippet
+
+snippet acld "Display abstract class with doc" !b
+<?php
+`!p snip.rv = namespace(snip, path)`
+/**
+ * ${2:Class doc ...}
+ *
+ * @author David Jegat <david.jegat@gmail.com>
+ */
+abstract class `!p snip.rv = snip.basename` $1
+{
+    ${0://implementation ...}
+}
+endsnippet
+
+snippet unit "Display a phpunit class" !b
+<?php
+`!p snip.rv = namespace(snip, path)`
+class `!p snip.rv = snip.basename` extends \PHPUnit_Framework_TestCase
+{
+    $0
+}
+endsnippet
+
+snippet it "Generate an interface skeleton" !b
+<?php
+`!p snip.rv = namespace(snip, path)`
+interface `!p snip.rv = snip.basename` $1
+{
+    ${0://implementation ...}
+}
+endsnippet
+
+snippet itd "Generate an interface skeleton with doc" !b
+<?php
+`!p snip.rv = namespace(snip, path)`
+/**
+ * ${2:Interface doc ...}
+ *
+ * @author David Jegat <david.jegat@gmail.com>
+ */
+interface `!p snip.rv = snip.basename` $1
+{
+    ${0://implementation ...}
+}
+endsnippet
+
+snippet fun "A simple function snippet" !b
+${1:public} function ${2:name}(${3:\$value})
+{
+    $0
+}
+endsnippet
+
+snippet fund "A simple function snippet with doc" !b
+/**
+ * ${4:Doc ...}
+ */
+${1:public} function ${2:name}(${3:\$value})
+{
+    $0
+}
+endsnippet
+
+snippet func "A simple function" !b
+function ${2:name}(${3:\$args})
+{
+    $0
+}
+endsnippet
+
+snippet cons "A simple constructor" !b
+public function __construct(${1:$args})
+{
+    $0
+}
+endsnippet
+
+snippet funcd "A simple function with doc" !b
+/**
+ * ${4:Doc ...}
+ */
+function ${2:name}(${3:\$args})
+{
+    $0
+}
+endsnippet
+
+snippet afun "A abstract function snippet" !b
+abstract ${1:public} function ${2:name}(${3:\$arguments});
+endsnippet
+
+snippet afun "A abstract function snippet with doc" !b
+/**
+ * ${4:Doc ...}
+ */
+abstract ${1:public} function ${2:name}(${3:\$arguments});$0
+endsnippet
+
+snippet funi "Add a simple mehod signature" !b
+public function ${1:name}(${3:\$args});
+endsnippet
+
+snippet funid "Add a simple mehod signature with doc" !b
+/**
+ * ${4:Doc ...}
+ */
+public function ${1:name}(${3:\$args});$0
+endsnippet
+
+snippet at "Display an attribute" !b
+${1:private} \$${2:value};$0
+endsnippet
+
+snippet pat "Display a public attribute" !b
+public \$${1:value};$0
+endsnippet
+
+snippet atd "Display an attribute with doc" !b
+/**
+ * @var ${1:type} \$$3
+ */
+${2:private} \$${3:value};$0
+endsnippet
+
+snippet use "Use statement" !b
+use ${1:Class};
+endsnippet
+
+snippet getset "Generate getter and setter" !b
+public function get${1/(.*)/\u$1/}()
+{
+    return \$this->$1;
+}
+
+public function set${1/(.*)/\u$1/}(\$$1)
+{
+    \$this->$1 = \$$1;
+
+    return \$this;
+}
+endsnippet
+
+snippet getsetd "Generate getter and setter with doc" !b
+/**
+ * @return ${2:string}
+ */
+public function get${1/(.*)/\u$1/}()
+{
+    return \$this->$1;
+}
+
+/**
+ * @param $2 \$$1
+ *
+ * @return `!p snip.rv = snip.basename`
+ */
+public function set${1/(.*)/\u$1/}(\$$1)
+{
+    \$this->$1 = \$$1;
+
+    return \$this;
+}$0
+endsnippet
+
+snippet getsets "Generate getters and setters" !b
+public function add${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    \$this->$2->add(\$$1);
+
+    return \$this;
+}
+
+public function get${1/(.*)/\u$1/}s()
+{
+    return \$this->$2->toArray();
+}
+
+public function has${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    return \$this->$2->contains(\$$1);
+}
+
+public function remove${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    \$this->$2->removeElement(\$$1);
+
+    return \$this;
+}
+endsnippet
+
+snippet getsetsarrd "Generate getters and setters for an array" !b
+/**
+ * @param ${4:Type} \$$1
+ * @param ${5:Type} \$$2
+ *
+ * @return `!p snip.rv = snip.basename`
+ */
+public function add${1/(.*)/\u$1/}(\$$1, \$$2)
+{
+    \$this->$3[$1] = \$$2;
+
+    return \$this;
+}
+
+/**
+ * @return array
+ */
+public function get${1/(.*)/\u$1/}s()
+{
+    return \$this->$2;
+}
+
+/**
+ * @param $4 \$$1
+ *
+ * @return boolean
+ */
+public function has${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    return isset(\$this->$2[\$$1]);
+}
+
+/**
+ * @param $4 \$$1
+ *
+ * @return `!p snip.rv = snip.basename`
+ */
+public function remove${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    if (\$this->has${1/(.*)/\u$1/}(${1/(.*)/\u$1/}(\$$1)) {
+        return \$this;
+    }
+
+    unset(\$this->$2[\$$1]);
+
+    return \$this;
+}
+endsnippet
+
+snippet getsetsd "Generate getters and setters" !b
+/**
+ * @param ${3:Type} \$$1
+ *
+ * @return `!p snip.rv = snip.basename`
+ */
+public function add${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    \$this->$2->add(\$$1);
+
+    return \$this;
+}
+
+/**
+ * @return $3
+ */
+public function get${1/(.*)/\u$1/}s()
+{
+    return \$this->$2->toArray();
+}
+
+/**
+ * @param $3 \$$1
+ *
+ * @return boolean
+ */
+public function has${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    return \$this->$2->contains(\$$1);
+}
+
+/**
+ * @param $3 \$$1
+ *
+ * @return `!p snip.rv = snip.basename`
+ */
+public function remove${1/(.*)/\u$1/}(${1/(.*)/\u$1/} \$$1)
+{
+    \$this->$2->removeElement(\$$1);
+
+    return \$this;
+}
+endsnippet
+
+snippet dattr "Generate doctrine attribute column" !b
+/**
+ * @ORM\\Column$2
+ */
+private \$${1:name};
+endsnippet
+
+snippet dattrd "Generate doctrine attribute column with phpdoc" !b
+/**
+ * @var ${3:string}
+ *
+ * @ORM\\Column$2
+ */
+private \$${1:name};
+endsnippet
+
+snippet dcl "Generate a dotrine ORM class" !b
+<?php
+`!p snip.rv = namespace(snip, path)`
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="$1")
+ */
+class `!p snip.rv = snip.basename` $2
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private \$id;
+
+    $0
+}
+endsnippet
+
+snippet drep "Generate a doctrine repository" !b
+<?php
+`!p snip.rv = namespace(snip, path)`
+use Doctrine\ORM\EntityRepository;
+
+class `!p snip.rv = snip.basename` extends EntityRepository
+{
+}
+endsnippet
+
+snippet radrep "Generate a RabBundle repository" !b
+<?php
+`!p snip.rv = namespace(snip, path)`
+use Knp\RadBundle\Doctrine\EntityRepository;
+
+class `!p snip.rv = snip.basename` extends EntityRepository
+{
+}
+endsnippet
+
+snippet author "Generate an author doc" !b
+@author David Jegat <david.jegat@gmail.com>
+endsnippet
+
+snippet licence "Generate a Licence block" !b
+/*
+ * This file is litle piece of ${1:Bundle}
+ *
+ * (c) david jegat <david.jegat@gmail.com>
+ *
+ * This code is under the MIT licence. For the full copyright and
+ * licence please read the LICENSE file distributed with this package.
+ */
+
+endsnippet
+
+snippet knplicense "Generate a knp licence" !b
+/*
+ * This file is litle piece of ${1:Bundle}
+ *
+ * (c) knplabs <hello@knplabs.com>
+ */
+endsnippet
+
+snippet spec "Generate a phpspec class" !b
+<?php
+`!p snip.rv = specNamespace(snip, path)`
+use PhpSpec\ObjectBehavior;
+
+class `!p snip.rv = snip.basename` extends ObjectBehavior
+{
+    function it_should_be_initializable()
+    {
+        \$this->shouldHaveType('`!p snip.rv = ns(snip, path)`\\`!p snip.rv = snip.basename`');
+    }
+}
+endsnippet
+
+snippet bspec "Generate a spec class inside a bundle" !b
+<?php
+`!p snip.rv = bundleSpecNamespace(snip, path)`
+use PhpSpec\ObjectBehavior;
+
+class `!p snip.rv = snip.basename` extends ObjectBehavior
+{
+    function it_should_be_initializable()
+    {
+        \$this->shouldHaveType('`!p snip.rv = bdNs(snip, path)`\\`!p snip.rv = snip.basename.replace('Spec', '')`');
+    }
+
+    $0
+}
+endsnippet
+
+snippet dd "Die and dump a variable" !b
+die(var_dump(\$${1:var}));
+endsnippet
+
+snippet th "this" !i
+\$this->$0
+endsnippet
+
+snippet the "this equal" !i
+\$this->$1 = \$$1;$0
+endsnippet
+
+snippet dp "dump" !b
+dump($1);
+endsnippet
+
+snippet db "doc bloc" !b
+/**
+ * $0
+ */
+endsnippet
+
+snippet @p "param doc bloc" !i
+@param ${1:type} \$${2:name}$0
+endsnippet
+
+snippet @pa "param for object doc bloc" !i
+@param \\${2:Namespace} \$${1:name}
+endsnippet
+
+snippet @v "var doc bloc" !i
+@var ${1:type}$0
+endsnippet
+
+snippet @va "var for object doc bloc" !i
+@var \\${2:Namespace} \$${1:name}
+endsnippet
+
+snippet @r "return doc bloc" !i
+@return ${1:type}
+endsnippet
+
+snippet @re "return for object doc bloc" !i
+@return \\${1:Namespace}
+endsnippet
+
+snippet @ih "Inherit doc block" !i
+/**
+ * {@inheritdoc}
+ */
+endsnippet
+
+snippet @t "Throws doc block" !i
+@throws ${1:Exception} ${2:description}$0
+endsnippet
+
+snippet @me "Author doc bloc" !i
+@author David Jegat <david.jegat@gmail.com>
+endsnippet

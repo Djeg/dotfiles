@@ -1,0 +1,80 @@
+snippet v "Display a variable" !b
+{{ $1 }}
+endsnippet
+
+snippet if "Display if block" !b
+{% if ${1:condition} %}
+    $0
+{% endif %}
+endsnippet
+
+snippet ife "Display if/else block" !b
+{% if ${1:condition} %}
+    $2
+{% else %}
+    $0
+{% endif %}
+endsnippet
+
+snippet i "Display a simple if" !b
+{% if ${1:condition} %}$0
+endsnippet
+
+snippet ei "Dispaly endif block" !b
+{% endif %}
+endsnippet
+
+snippet f "Display for block" !b
+{% for ${1:item} in ${2:items} %}$0
+endsnippet
+
+snippet ef "Display endfor" !b
+{% endfor %}
+endsnippet
+
+snippet for "Display a for block" !b
+{% for ${1:item} in ${2:items} %}
+    $0
+{% endfor %}
+endsnippet
+
+snippet bl "Start a block" !b
+{% block ${1:name} %}
+    $0
+{% endblock $1 %}
+endsnippet
+
+snippet b "Start a one line block" !b
+{% block ${1:name} '${2:content}' %}
+endsnippet
+
+snippet ex "Extends a template" !b
+{% extends '${1:template}' %}
+endsnippet
+
+snippet in "Include command" !b
+{% include '${1:template}' %}
+endsnippet
+
+snippet inw "Include template with variables" !b
+{% include '${1:template}' with $2 %}
+endsnippet
+
+snippet render "Render a given symfony2 controller" !b
+{{ render(controller(
+    '$1',
+    {$2}
+)) }}
+endsnippet
+
+snippet cm "Start a command block" !b
+{% $1 %}
+endsnippet
+
+snippet ecm "Finish a command block" !b
+{% end$1 %}
+endsnippet
+
+snippet path "Display a path" !b
+{{ path('$1', {$2}) }}
+endsnippet

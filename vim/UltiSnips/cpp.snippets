@@ -1,0 +1,20 @@
+snippet h "create header file" !b
+#ifndef ${1:LIB_FILE}_DEF
+#define ${1:LIB_FILE}_DEF
+
+$0
+
+#endif
+endsnippet
+
+snippet hcl "create header class file" !b
+#ifndef ${1/(.*)/\U$1\E/}_${2/(.*)/\U$1\E/}_DEF
+#define $1_$2_DEF
+
+class ${2/([a-zA-Z])(.*)/\u$1\L$2\E/}
+{
+    $0
+};
+
+#endif
+endsnippet

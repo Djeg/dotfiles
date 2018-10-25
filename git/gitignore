@@ -1,0 +1,10 @@
+vendor.tags
+Guardfile
+sample/
+test.*
+*.orig
+*.tags
+.tagsgen.json
+_vimrc_local.vim
+.agignore
+*debug.log
