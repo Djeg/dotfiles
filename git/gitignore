@@ -8,3 +8,5 @@ test.*
 _vimrc_local.vim
 .agignore
 *debug.log
+node_modules/
+*.old/

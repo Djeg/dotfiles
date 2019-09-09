@@ -1,18 +1,29 @@
-# IMPORT
-snippet ii "import" !b
-import '$1'$0
+global !p
+def toTitle(a):
+	return a[0].upper() + a[1:]
+endglobal
+
+# rx
+snippet rx "Require all rx operators" !b
+import * as rx from 'rxjs/operators'
 endsnippet
 
-snippet ip "Import from" !b
-import { $1 } from '$2'$0
+# flow header
+snippet ff "Flow header" !b
+/* @flow */
+$0
 endsnippet
 
-snippet id "Import default from" !b
-import $1 from '$2'$0
+# flow export
+snippet ecf "Export flow const" !b
+export const ${1:name}
+  : ${2:Type}
+  = $0
 endsnippet
 
-snippet ia "Import all from" !b
-import * as $1 from '$2'$0
+# react
+snippet react "Require react" !b
+import React from 'react'
 endsnippet
 
 # EXPORT
@@ -50,6 +61,18 @@ endsnippet
 snippet ec2 "Uncurry 2" !b
 // $1 :: $2 -> $3 -> $4
 export const $1 = ${5:R.}uncurryN(2, $0)
+endsnippet
+
+snippet def "Define function" !b
+const $1 = def
+  ('$1 :: $2')
+  ($3 => $0)
+endsnippet
+
+snippet defd "Define and export function" !b
+export const $1 = def
+  ('$1 :: $2')
+  ($3 => $0)
 endsnippet
 
 snippet c2 "Uncurry 2" !b

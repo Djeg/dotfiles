@@ -32,10 +32,13 @@ bind H resize-pane -L 10
 
 # reload tmux conf
 bind-key r source-file ~/.tmux.conf \; display "Config reloaded"
+bind-key e set status on
+bind-key d set status off
 
 set -g status-position top
 set -g status-fg colour250
 set -g status-bg colour233
+set -g status off
 
 # left side of status bar
 set -g status-left-length 10

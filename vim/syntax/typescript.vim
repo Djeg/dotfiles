@@ -210,12 +210,32 @@ syn match typescriptLogicSymbols "\(&&\)\|\(||\)"
 " skip curly braces inside RegEx's and comments
 syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}/ transparent fold keepend extend
 
+" HM Support
+syn match hmTypeOperator "\(::\)\|\(->\)\|\(|\)" contained
+syn match hmTypeOrganiser "\({\)\|\(}\)\|\((\)\|\()\)" contained
+syn match hmType "[A-Z][a-zA-Z0-9_]\+ \?\([a-z0-9 ]*\)\?" contains=hmTypeVar contained
+syn match hmTypeVar " [a-z0-9 ]" contained
+syn match hmVar "[a-zA-Z0-9_-]\+ \?\([a-z0-9 ]*\)\?::" contains=hmTypeOperator,hmTypeOrganiser,hmTypeVar
+syn match hmYada "| \?\([a-z0-9 ]*\)\?" contains=hmTypeVar,hmTypeOperator,hmTypeOrganiser contained
+syn match hmComment "\/\/.*" contains=@Spell,hmTypeOperator,hmTypeOrganiser,hmType,hmYada,hmVar
+syn region hmCommentBlock start="/\*\*" end="\*/" contains=@Spell,hmTypeOperator,hmTypeOrganiser,hmType,hmYada,hmVar
+
+
+hi link hmComment Comment
+hi link hmCommentBlock Comment
+hi link hmTypeOperator Operator
+hi link hmTypeOrganiser Function
+hi link hmType Type
+hi link hmTypeVar Comment
+hi link hmVar SpecialComment
+
 " setl foldtext=FoldText()
 " endfunction
 
 " au FileType typescript call typescriptFold()
 
 " }}}
+" Type
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
@@ -331,3 +351,5 @@ if main_syntax == 'typescript'
 endif
 
 " vim: ts=4
+"
+

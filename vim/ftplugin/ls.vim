@@ -15,9 +15,9 @@ setlocal commentstring=#\ %s
 setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " Enable LiveScriptMake if it won't overwrite any settings.
-if !len(&l:makeprg)
-  compiler ls
-endif
+" if !len(&l:makeprg)
+"   compiler ls
+" endif
 
 " Check here too in case the compiler above isn't loaded.
 if !exists('livescript_compiler')

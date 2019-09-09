@@ -138,10 +138,10 @@ if &t_Co > 255
    " Indent guide colors
 
    if s:molokai_original == 1
-      hi Normal                   ctermbg=16
+      hi Normal                   ctermbg=234
       hi CursorLine               ctermbg=233   cterm=none
    else
-      hi Normal       ctermfg=252 ctermbg=16
+      hi Normal       ctermfg=252 ctermbg=234
       hi CursorLine               ctermbg=233   cterm=none
    endif
    hi Boolean         ctermfg=135

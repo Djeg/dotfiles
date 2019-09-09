@@ -15,11 +15,12 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/vimproc.vim' " asynchronous execution library
 NeoBundle 'scrooloose/nerdtree' " NERD Tree
+NeoBundle 'albfan/nerdtree-git-plugin'
 NeoBundle 'airblade/vim-gitgutter' " Git gutter
 NeoBundle 'Townk/vim-autoclose' " Auto close ()[]{}
 NeoBundle 'UltiSnips' " Snippets
+NeoBundle 'digitaltoad/vim-pug.git'
 NeoBundle 'godlygeek/tabular.git' "Tabular code portion
-NeoBundle 'sjbach/lusty.git'
 NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 NeoBundle 'arnaud-lb/vim-php-namespace'
 NeoBundle 'qpkorr/vim-bufkill'
@@ -27,6 +28,14 @@ NeoBundle 'elmcast/elm-vim'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'reasonml-editor/vim-reason-plus'
 NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'Galooshi/vim-import-js.git'
+NeoBundle 'flowtype/vim-flow'
+NeoBundle "frigoeu/psc-ide-vim"
+NeoBundle "junegunn/limelight.vim.git"
+NeoBundle "git@github.com:junegunn/goyo.vim.git"
+NeoBundle "sjbach/lusty.git"
+NeoBundle "vmchale/dhall-vim"
+NeoBundle "w0rp/ale"
 
 call neobundle#end()
 
@@ -47,7 +56,6 @@ set encoding=utf-8
 " General Behavior
 set nocompatible                 " Use vim defaults
 set history=1000                 " Configure the history max memory
-set nobackup                     " Do not backup files
 set directory=~/.tmp             " Directory to put swap files
 set cursorline                   " Highlight the cursor line
 set fillchars=""
@@ -77,17 +85,19 @@ set modifiable
 set hidden
 set rtp+=~/.fzf
 set nowrap
+set backupcopy=yes
+set timeout timeoutlen=500 ttimeoutlen=0
 
 " Color Scheme
 colorscheme molokai
 set t_Co=256
 hi Normal          guifg=#F8F8F2 guibg=NONE
-hi Normal ctermbg=NONE
+hi Normal          ctermbg=NONE
 let &colorcolumn="80,".join(range(120,999),",")
 highlight ColorColumn ctermbg=232 guibg=#2c2d27
 highlight CursorColumn ctermbg=234 guibg=#2c2d27
 highlight CursorLine ctermbg=233 guibg=#2c2d27
-highlight LineNr ctermbg=234 guibg=#2c2d27
+highlight LineNr ctermbg=NONE guibg=#2c2d27
 highlight Visual ctermbg=238
 
 " Tag Configuration
@@ -129,7 +139,7 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|png|jpeg|jpg|ico|svg)',
   \ }
 
-" Airline configuration
+"Airline configuration
 let g:airline_powerline_fonts=0
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#tabline#fnamemod=':t'
@@ -140,9 +150,20 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_theme='jellybeans'
 
+" Limelight
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'Gray'
+
+" Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+
+" Goyo
+let g:goyo_width = 110
+
 " Mapping
 nmap <Leader>en :set number<CR>
 nmap <Leader>dn :set nonumber<CR>
+map <silent> <C-b> :CtrlPBuffer<CR>
 nmap <C-l> w
 nmap <C-h> b
 nmap <C-j> 4j
@@ -172,16 +193,23 @@ vmap <Leader>> :Tabularize /=><CR>
 vmap <Leader>$ :Tabularize /\$/l1r0<CR>
 vmap <Leader>\| :Tabularize /\|<CR>
 nmap <Leader>a gg<S-v><S-g><CR>
-nmap <silent> <Leader>j "zyiw:exe ":tj ".@z.""<CR>
-nmap <silent> <Leader>J "zyiw:exe ":ptj ".@z.""<CR>
 nmap <Leader>v :source /home/djeg/.config/nvim/init.vim<cr>
 imap <Leader>u <C-O>:call PhpInsertUse()<CR>
 nmap <Leader>u :call PhpInsertUse()<CR>
 imap <Leader>e <C-O>:call PhpExpandClass()<CR>
 nmap <Leader>e :call PhpExpandClass()<CR>
 map <Leader>sip vi}:sort<CR>
+map <C-o> :CtrlPBuffer<CR>
+noremap <Leader>rx mkggOimport * as rx from 'rxjs/operators'<Esc>`k
+noremap <Leader>rr mkggOimport React from 'react'<Esc>`k
 noremap <Leader>mm  :make % <cr>:cwindow<cr>:redraw!<cr>
 noremap <Leader>mmf :make --fix % <cr>:cwindow<cr>:redraw!<cr>
+nmap <Leader>fe :Goyo <CR>:Limelight0.8<CR>
+nmap <Leader>fd :Goyo! <CR>:Limelight!<CR>
+nmap <Leader>fel :set g:goyo_linenr = 1<CR>
+nmap <Leader>fdl :set g:goyo_linenr = 0<CR>
+nmap <Leader>cd :e expand('%:p')
+nmap <silent> <Leader>ss :cclose<CR> :copen<CR>
 
 " Create a directory when not exists
 au BufWrite * :call <SID>MkdirsIfNotExists(expand('<afile>:h'))
@@ -201,9 +229,11 @@ au BufNewFile,BufRead *.ts set ft=typescript
 au BufNewFile,BufRead *.tsx set ft=typescript
 au BufNewFile,BufRead *.coffee set filetype=coffee
 au BufNewFile,BufRead *.reason set filetype=reason
+au BufNewFile,BufRead *.es set filetype=typescript
 au BufNewFile,BufRead *.mjs set filetype=typescript
 au BufNewFile,BufRead *.js set filetype=typescript
 au BufNewFile,BufRead *.jsx set filetype=typescript
+au BufRead,BufNewFile *.graphql,*.graphqls,*.gql set filetype=graphql
 
 " Strip trailing whitespace
 function! StripTrailingWhitespace()
@@ -217,6 +247,10 @@ endfunction
 map <silent> <F2> :call StripTrailingWhitespace()<CR>
 map! <silent> <F2> :call StripTrailingWhitespace()<CR>
 
+" Vim Flow
+let g:flow#autoclose=1
+let g:flow#enable=0
+
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<Leader><Tab>"
@@ -227,6 +261,10 @@ let g:UltiSnipsJumpBackwardTrigger="<Leader><S-Tab>"
 let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+
+" Ale
+let g:ale_completion_enabled = 1
+let b:ale_linters = ['eslint']
 
 " Custom Tab Or Complete
 function! Tab_Or_Complete()
