@@ -77,7 +77,7 @@ alias grep="grep --color"
 alias selenium="java -jar ~/.selenium-server"
 alias :q="exit"
 alias :r="source ~/.zshrc"
-alias tree="tree -C"
+alias tree="tree -C -L 5 -I 'node_modules|vendor|bin'"
 alias gst="git status"
 alias glog="git log --graph --pretty=format:'%Cred%h %Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias gac="git add -A && git ci -m "
@@ -117,7 +117,7 @@ bindkey ^R history-incremental-search-backward
 export GOPATH="$HOME/.go"
 export GOBIN="$HOME/.go/bin"
 export GOROOT="/usr/lib/go"
-export PATH="bin:vendor/bin:node_modules/.bin:/home/djeg/.gem/ruby/2.5.0/bin:$HOME/.bin:$HOME/.node_modules/bin:$PATH:$HOME/.rvm/bin:$HOME/.composer/vendor//root/.gem/ruby/2.5.0/bin/root/.gem/ruby/2.5.0/binbin:$HOME/.config/composer/vendor/bin:$GOPATH/bin" # Add RVM to PATH for scripting
+export PATH="bin:vendor/bin:node_modules/.bin:/home/djeg/.gem/ruby/2.5.0/bin:$HOME/.bin:$HOME/.node_modules/bin:$PATH:$HOME/.rvm/bin:$HOME/.composer/vendor//root/.gem/ruby/2.5.0/bin/root/.gem/ruby/2.5.0/binbin:$HOME/.config/composer/vendor/bin:$GOPATH/bin:$HOME/.gem/ruby/2.6.0/bin" # Add RVM to PATH for scripting
 export EDITOR='vim'
 export TERM=screen-256color-bce
 export PROJECT_FOLDER="/home/djeg/Project"

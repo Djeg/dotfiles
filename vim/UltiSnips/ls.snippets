@@ -1,0 +1,51 @@
+snippet m "define a member" !b
+## @type ${1:name} :: ${2}
+$1 = $0
+endsnippet
+
+snippet em "export and define a member" !b
+## @type ${1:name} :: ${2}
+export $1 = $0
+endsnippet
+
+snippet md "define a member with documentation" !b
+/***
+ * -- ${1:Documentation}
+ * @type ${2:name} :: ${3}
+ */
+$2 = $0
+endsnippet
+
+snippet emd "export and define a member" !b
+/***
+ * -- ${1:Documentation}
+ * @type ${2:name} :: ${3}
+ */
+export $2 = $0
+endsnippet
+
+snippet t "create a type block" !b
+/***
+ * -- ${1:Documentation}
+ * @type $2 :: $0
+ */
+endsnippet
+
+snippet req "require a library" !b
+require! '${1:/path}': ${2:Name}
+endsnippet
+
+snippet it "jest it snippet" !b
+it "$1" !->
+  $0
+endsnippet
+
+snippet at "jest it snippet but with an async support" !b
+it "$1" ->>
+  $0
+endsnippet
+
+snippet ir "jest it with return value support" !b
+it "$1" ->
+  $0
+endsnippet
