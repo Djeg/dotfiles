@@ -35,6 +35,17 @@ snippet req "require a library" !b
 require! '${1:/path}': ${2:Name}
 endsnippet
 
+snippet req1 "require a standalone library" !b
+require! '${1:lib}'
+endsnippet
+
+snippet cpn "require and create a standalone react component" !b
+require! 'react': { createElement: h }
+
+
+export ${1:Component} = $0
+endsnippet
+
 snippet it "jest it snippet" !b
 it "$1" !->
   $0
@@ -48,4 +59,44 @@ endsnippet
 snippet ir "jest it with return value support" !b
 it "$1" ->
   $0
+endsnippet
+
+snippet bfe "jest before each" !b
+beforeEach !->
+	$0
+endsnippet
+
+snippet bfea "jest before each asynchronous" !b
+beforeEach ->>
+	$0
+endsnippet
+
+snippet bfa "jest before all" !b
+beforeAll !->
+	$0
+endsnippet
+
+snippet bfaa "jest before all asynchronous" !b
+beforeAll ->>
+	$0
+endsnippet
+
+snippet afe "jest after each" !b
+afterEach !->
+	$0
+endsnippet
+
+snippet afea "jest after each asynchronous" !b
+afterEach ->>
+	$0
+endsnippet
+
+snippet afa "jest after all" !b
+afterAll !->
+	$0
+endsnippet
+
+snippet afaa "jest after all asynchronous" !b
+afterAll ->>
+	$0
 endsnippet

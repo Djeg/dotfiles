@@ -146,7 +146,7 @@ syntax keyword typescriptGlobal self top parent
 syntax keyword typescriptDeprecated escape unescape all applets alinkColor bgColor fgColor linkColor vlinkColor xmlEncoding
 "}}}
 "" Statement Keywords"{{{
-syntax keyword typescriptConditional if else switch
+syntax keyword typescriptConditional if else switch is not and or then
 syntax keyword typescriptRepeat do while for in of
 syntax keyword typescriptBranch break continue yield await
 syntax keyword typescriptLabel case default async readonly

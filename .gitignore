@@ -7,3 +7,5 @@ vim/bundle/*
 nvim/bundle/*
 test/
 vendor/
+internals/*
+!internals/*.info

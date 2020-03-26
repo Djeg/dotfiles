@@ -13,7 +13,16 @@ NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'Shougo/vimproc.vim' " asynchronous execution library
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
+NeoBundle 'prettier/vim-prettier', { 'do': 'yarn install' }
 NeoBundle 'leafgarland/typescript-vim' " Typescript suport
 NeoBundle 'scrooloose/nerdtree' " NERD Tree
 NeoBundle 'airblade/vim-gitgutter' " Git gutter
@@ -31,6 +40,7 @@ NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'junegunn/goyo.vim'
 NeoBundle 'junegunn/limelight.vim'
 NeoBundle 'styled-components/vim-styled-components'
+NeoBundle 'Quramy/tsuquyomi'
 
 call neobundle#end()
 
@@ -116,13 +126,11 @@ function! s:goyo_enter()
   set noshowmode
   set noshowcmd
   highlight Visual ctermbg=233
-  Limelight0.8
 endfunction
 
 function! s:goyo_leave()
   set showmode
   set showcmd
-  Limelight!
   hi Normal ctermbg=234
   highlight Visual ctermbg=233
 endfunction
@@ -140,15 +148,16 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:8,results:8'
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
-if executable('ag')
-  if filereadable('.agignore')
-      let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  else
-      let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  endif
-let g:ctrlp_use_caching = 0
-endif
-
+" if executable('ag')
+"   if filereadable('.agignore')
+"       let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"   else
+"       let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"   endif
+" let g:ctrlp_use_caching = 0
+" endif
+"
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v([\/]\.(git|hg|svn))|([\/]vendor)|([\/]node_modules)|([\/]compiled)|([\/]dist)|([\/]app/lib)|([\/]bower_components)|([\/]doc)|([\/]jspm_packages)$',
   \ 'file': '\v\.(exe|png|jpeg|jpg|ico|svg)',
@@ -195,6 +204,7 @@ nmap <leader>x :NERDTreeToggle<CR>
 nmap <Leader>nf :NERDTreeFind<CR>
 map <Leader>eg :GitGutterToggle<CR>
 vmap <Leader>: :Tabularize /:<CR>
+vmap <Leader>; :Tabularize /::<CR>
 vmap <Leader>/ :Tabularize /:\zs<CR>
 vmap <Leader>= :Tabularize /=<CR>
 vmap <Leader>> :Tabularize /=><CR>
@@ -256,6 +266,10 @@ let g:UltiSnipsJumpBackwardTrigger="<Leader><S-Tab>"
 let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+
+" Tsu configuration
+let g:tsuquyomi_disable_default_mappings = 1
+let g:tsuquyomi_auto_open = 0
 
 " Custom Tab Or Complete
 function! Tab_Or_Complete()

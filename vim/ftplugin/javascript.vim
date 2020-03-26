@@ -1,4 +1,4 @@
-map <buffer> <silent> <Leader>ip :normal ggOip<Leader><tab><CR>a
-map <buffer> <silent> <Leader>id :normal ggOid<Leader><tab><CR>a
-map <buffer> <silent> <Leader>ia :normal ggOia<Leader><tab><CR>a
-map <buffer> <silent> <Leader>ii :normal ggOii<Leader><tab><CR>a
+nmap <buffer> <silent> <Leader>ip :TsuImport<CR>
+nmap <buffer> <silent> <Leader>dd :TsuTypeDefinition<CR>
+nmap <buffer> <silent> <Leader>ff :TsuReferences<CR>
+nmap <buffer> <silent> <Leader>rr :TsuRenameSymbol<CR>
